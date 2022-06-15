@@ -1,5 +1,5 @@
 public struct Calcboard {
-    public private(set) var text = "Hello, World!"
+    public private(set) var text = "Hello, Calcboard!"
 
     public init() {
     }
