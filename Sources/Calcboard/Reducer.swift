@@ -16,7 +16,7 @@ struct Reducer {
         case let .arithmeticOperator(opt):
             return reduce(expression, with: opt)
         case .decimalSeparator:
-            return expression
+            return reduce(expression, with: ".")
         case .equals:
             return expression
         case .backspace:
@@ -63,10 +63,10 @@ private extension Reducer {
         switch expression {
         case .empty:
             break
-        case .lhs(let lhs):
-            return Expression.lhsOperator(lhs, opt)
-        case .lhsOperator(let lhs, _):
-            return Expression.lhsOperator(lhs, opt)
+        case let .lhs(lhsString):
+            return Expression.lhsOperator(lhsString, opt)
+        case let .lhsOperator(lhsString, _):
+            return Expression.lhsOperator(lhsString, opt)
         case .lhsOperatorRhs:
             return reduce(evaluate(expression), with: opt)
         }
@@ -85,5 +85,29 @@ private extension Reducer {
             break
         }
         return .empty
+    }
+}
+
+// MARK: - Decimal separator
+
+private extension Reducer {
+    func reduce(_ expression: Expression, with separator: String) -> Expression {
+        switch expression {
+        case .empty, .lhsOperator:
+            break
+        case let .lhs(lhsString):
+            return Expression.lhs(appendSeparator(separator, to: lhsString))
+        case let .lhsOperatorRhs(lhsString, opt, rhsString):
+            return Expression.lhsOperatorRhs(lhsString, opt, appendSeparator(separator, to: rhsString))
+        }
+        return expression
+    }
+    
+    func appendSeparator(_ separator: String, to string: String) -> String {
+        let new = string + separator
+        if validator.isValidPartialDecimalString(new) {
+            return new
+        }
+        return string
     }
 }
