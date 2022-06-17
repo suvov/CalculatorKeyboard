@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
-import Calcboard
 
 struct ContentView: View {
     var body: some View {
-        Text(Calcboard().text)
+        Text("Hello world!")
             .padding()
     }
 }
