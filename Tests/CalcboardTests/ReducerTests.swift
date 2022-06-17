@@ -48,4 +48,44 @@ class ReducerTests: XCTestCase {
         XCTAssertEqual(reducer.reduce(expression, with: .digit(.eight)),
                        Expression.lhsOperatorRhs("10", .subtraction, "8"))
     }
+    
+    // MARK: - Append operator
+    
+    // "" + "÷" -> ""
+    func testAppendingToEmpty() {
+        let expression = Expression.empty
+        XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.division)),
+                       Expression.empty)
+
+    }
+    
+    // "1" + "-" -> "1 -"
+    func testAppendingToLhsCaseOne() {
+        let expression = Expression.lhs("1")
+        XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.subtraction)),
+                       Expression.lhsOperator("1", .subtraction))
+    }
+    
+    // "1 -" + "-" -> "1 -"
+    func testAppendingToLhsCaseTwo() {
+        let expression = Expression.lhsOperator("1", .subtraction)
+        XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.subtraction)),
+                       Expression.lhsOperator("1", .subtraction))
+        
+    }
+    
+    // "1 -" + "×" -> "1 ×"
+    func testChangesOperator() {
+        let expression = Expression.lhsOperator("1", .subtraction)
+        XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.multiplication)),
+                       Expression.lhsOperator("1", .multiplication))
+        
+    }
+    
+    // "1 + 3" + "×" -> "4 ×"
+    func testEvaluates() {
+        let expression = Expression.lhsOperatorRhs("1", .addition, "3")
+        XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.multiplication)),
+                       Expression.lhsOperator("4", .multiplication))
+    }
 }
