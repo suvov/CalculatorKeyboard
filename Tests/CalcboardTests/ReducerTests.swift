@@ -52,7 +52,7 @@ class ReducerTests: XCTestCase {
     // MARK: - Append operator
     
     // "" + "÷" -> ""
-    func testAppendingToEmpty() {
+    func testAppendingOperatorToEmpty() {
         let expression = Expression.empty
         XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.division)),
                        Expression.empty)
@@ -60,14 +60,14 @@ class ReducerTests: XCTestCase {
     }
     
     // "1" + "-" -> "1 -"
-    func testAppendingToLhsCaseOne() {
+    func testAppendingOperatorToLhsCaseOne() {
         let expression = Expression.lhs("1")
         XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.subtraction)),
                        Expression.lhsOperator("1", .subtraction))
     }
     
     // "1 -" + "-" -> "1 -"
-    func testAppendingToLhsCaseTwo() {
+    func testAppendingOperatorToLhsCaseTwo() {
         let expression = Expression.lhsOperator("1", .subtraction)
         XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.subtraction)),
                        Expression.lhsOperator("1", .subtraction))
@@ -83,9 +83,52 @@ class ReducerTests: XCTestCase {
     }
     
     // "1 + 3" + "×" -> "4 ×"
-    func testEvaluates() {
+    func testEvaluatesAfterAppendingOperator() {
         let expression = Expression.lhsOperatorRhs("1", .addition, "3")
         XCTAssertEqual(reducer.reduce(expression, with: .arithmeticOperator(.multiplication)),
                        Expression.lhsOperator("4", .multiplication))
+    }
+    
+    // MARK: - Append decimal separator
+    
+    func testAppendingSeparatorToEmpty() {
+        let expression = Expression.empty
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
+                       Expression.empty)
+    }
+    
+    func testAppendingSeparatorToLhsOperator() {
+        let expression = Expression.empty
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator), Expression.empty)
+    }
+    
+    func testAppendingSeparatorToLhsCaseOne() {
+        let expression = Expression.lhs("0")
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
+                       Expression.lhs("0."))
+    }
+    
+    func testAppendingSeparatorToLhsCaseTwo() {
+        let expression = Expression.lhs("0.")
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
+                       Expression.lhs("0."))
+    }
+    
+    func testAppendingSeparatorToLhsOperatorRhsCaseOne() {
+        let expression = Expression.lhsOperatorRhs("1", .addition, "1")
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
+                       Expression.lhsOperatorRhs("1", .addition, "1."))
+    }
+    
+    func testAppendingSeparatorToLhsOperatorRhsCaseTwo() {
+        let expression = Expression.lhsOperatorRhs("1", .addition, "1.")
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
+                       Expression.lhsOperatorRhs("1", .addition, "1."))
+    }
+    
+    func testAppendingSeparatorToLhsOperatorRhsCaseThree() {
+        let expression = Expression.lhsOperatorRhs("1.99", .addition, "0")
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
+                       Expression.lhsOperatorRhs("1.99", .addition, "0."))
     }
 }
