@@ -1,6 +1,6 @@
 import Foundation
 
-enum Expression {
+enum Expression: Equatable {
     case empty
     case lhs(String)
     case lhsOperator(String, Operator)
