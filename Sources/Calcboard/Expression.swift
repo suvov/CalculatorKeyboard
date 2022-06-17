@@ -9,6 +9,9 @@ enum Expression {
 
 extension Expression {
     var value: Decimal? {
-        nil
+        guard case .lhs(let value) = self else {
+            return nil
+        }
+        return Decimal(string: value)
     }
 }
