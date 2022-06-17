@@ -14,7 +14,7 @@ struct Reducer {
         case let .digit(digit):
             return reduce(expression, with: digit)
         case let .arithmeticOperator(opt):
-            return expression
+            return reduce(expression, with: opt)
         case .decimalSeparator:
             return expression
         case .equals:
@@ -24,6 +24,8 @@ struct Reducer {
         }
     }
 }
+
+// MARK: - Digits
 
 private extension Reducer {
     func reduce(_ expression: Expression, with digit: Digit) -> Expression {
@@ -51,5 +53,37 @@ private extension Reducer {
             return new
         }
         return string
+    }
+}
+
+// MARK: - Operators
+
+private extension Reducer {
+    func reduce(_ expression: Expression, with opt: Operator) -> Expression {
+        switch expression {
+        case .empty:
+            break
+        case .lhs(let lhs):
+            return Expression.lhsOperator(lhs, opt)
+        case .lhsOperator(let lhs, _):
+            return Expression.lhsOperator(lhs, opt)
+        case .lhsOperatorRhs:
+            return reduce(evaluate(expression), with: opt)
+        }
+        return expression
+    }
+    
+    func evaluate(_ expression: Expression) -> Expression {
+        switch expression {
+        case .lhsOperatorRhs:
+            if let decimalString = evaluator.evaluate(expression), validator.isValidDecimalString(decimalString) {
+                return Expression.lhs(decimalString)
+            } else {
+                break
+            }
+        default:
+            break
+        }
+        return .empty
     }
 }
