@@ -131,4 +131,25 @@ class ReducerTests: XCTestCase {
         XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
                        Expression.lhsOperatorRhs("1.99", .addition, "0."))
     }
+    
+    // MARK: - Evaluate
+    
+    // "1 + 3" -> "4"
+    func testEvaluateLhsOperatorRhs() {
+        let expression = Expression.lhsOperatorRhs("1", .addition, "3")
+        XCTAssertEqual(reducer.reduce(expression, with: .equals),
+                       Expression.lhs("4"))
+    }
+    
+    // "1"
+    func testEvaluateLhs() {
+        let expression = Expression.lhs("1")
+        XCTAssertEqual(reducer.reduce(expression, with: .equals), expression)
+    }
+    
+    // "1 -"
+    func testEvaluateLhsOperator() {
+        let expression = Expression.lhsOperator("1", .subtraction)
+        XCTAssertEqual(reducer.reduce(expression, with: .equals), expression)
+    }
 }
