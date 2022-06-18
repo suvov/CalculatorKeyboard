@@ -152,4 +152,41 @@ class ReducerTests: XCTestCase {
         let expression = Expression.lhsOperator("1", .subtraction)
         XCTAssertEqual(reducer.reduce(expression, with: .equals), expression)
     }
+    
+    // MARK: - Backspace
+    
+    // "12" + "􁂈" -> "1"
+    func testDropsLastOnLhsCaseOne() {
+        let expression = Expression.lhs("12")
+        XCTAssertEqual(reducer.reduce(expression, with: .backspace),
+                       Expression.lhs("1"))
+    }
+    
+    // "1" + "􁂈" -> ""
+    func testDropsLastOnLhsCaseTwo() {
+        let expression = Expression.lhs("1")
+        XCTAssertEqual(reducer.reduce(expression, with: .backspace),
+                       Expression.empty)
+    }
+    
+    // "1 ×" + "􁂈" -> "1"
+    func testDropsLastOnLhsOperator() {
+        let expression = Expression.lhsOperator("1", .multiplication)
+        XCTAssertEqual(reducer.reduce(expression, with: .backspace),
+                       Expression.lhs("1"))
+    }
+    
+    // "3 × 10" + "􁂈" -> "3 × 1"
+    func testDropsLastOnLhsOperatorRhsCaseOne() {
+        let expression = Expression.lhsOperatorRhs("3", .multiplication, "10")
+        XCTAssertEqual(reducer.reduce(expression, with: .backspace),
+                       Expression.lhsOperatorRhs("3", .multiplication, "1"))
+    }
+    
+    // "3 × 1" + "􁂈" -> "3 ×"
+    func testDropsLastOnLhsOperatorRhsCaseTwo() {
+        let expression = Expression.lhsOperatorRhs("3", .multiplication, "1")
+        XCTAssertEqual(reducer.reduce(expression, with: .backspace),
+                       Expression.lhsOperator("3", .multiplication))
+    }
 }
