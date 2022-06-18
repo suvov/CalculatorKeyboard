@@ -16,7 +16,7 @@ struct Reducer {
         case let .arithmeticOperator(opt):
             return reduce(expression, with: opt)
         case .decimalSeparator:
-            return reduce(expression, with: ".")
+            return reduceWithDecimalSeparator(expression)
         case .equals:
             return evaluate(expression)
         case .backspace:
@@ -36,8 +36,8 @@ private extension Reducer {
             return Expression.lhs(appendDigit(digit, to: string))
         case let .lhsOperator(string, opt):
             return Expression.lhsOperatorRhs(string, opt, appendDigit(digit, to: ""))
-        case let .lhsOperatorRhs(lhsString, opt, rhsString):
-            return Expression.lhsOperatorRhs(lhsString, opt, appendDigit(digit, to: rhsString))
+        case let .lhsOperatorRhs(lhs, opt, rhs):
+            return Expression.lhsOperatorRhs(lhs, opt, appendDigit(digit, to: rhs))
         }
     }
     
@@ -63,10 +63,10 @@ private extension Reducer {
         switch expression {
         case .empty:
             break
-        case let .lhs(lhsString):
-            return Expression.lhsOperator(lhsString, opt)
-        case let .lhsOperator(lhsString, _):
-            return Expression.lhsOperator(lhsString, opt)
+        case let .lhs(lhs):
+            return Expression.lhsOperator(lhs, opt)
+        case let .lhsOperator(lhs, _):
+            return Expression.lhsOperator(lhs, opt)
         case .lhsOperatorRhs:
             return reduce(evaluate(expression), with: opt)
         }
@@ -77,14 +77,15 @@ private extension Reducer {
 // MARK: - Decimal separator
 
 private extension Reducer {
-    func reduce(_ expression: Expression, with separator: String) -> Expression {
+    func reduceWithDecimalSeparator(_ expression: Expression) -> Expression {
+        let separator = "."
         switch expression {
         case .empty, .lhsOperator:
             break
-        case let .lhs(lhsString):
-            return Expression.lhs(appendSeparator(separator, to: lhsString))
-        case let .lhsOperatorRhs(lhsString, opt, rhsString):
-            return Expression.lhsOperatorRhs(lhsString, opt, appendSeparator(separator, to: rhsString))
+        case let .lhs(lhs):
+            return Expression.lhs(appendSeparator(separator, to: lhs))
+        case let .lhsOperatorRhs(lhs, opt, rhs):
+            return Expression.lhsOperatorRhs(lhs, opt, appendSeparator(separator, to: rhs))
         }
         return expression
     }
@@ -105,21 +106,21 @@ private extension Reducer {
         switch expression {
         case .empty:
             break
-        case let .lhs(lhsString):
-            let newLhs = String(lhsString.dropLast())
+        case let .lhs(lhs):
+            let newLhs = String(lhs.dropLast())
             if newLhs.isEmpty {
                 return Expression.empty
             } else {
                 return Expression.lhs(newLhs)
             }
-        case let .lhsOperator(lhsString, _):
-            return Expression.lhs(lhsString)
-        case let .lhsOperatorRhs(lhsString, opt, rhsString):
-            let newRhs = String(rhsString.dropLast())
+        case let .lhsOperator(lhs, _):
+            return Expression.lhs(lhs)
+        case let .lhsOperatorRhs(lhs, opt, rhs):
+            let newRhs = String(rhs.dropLast())
             if newRhs.isEmpty {
-                return Expression.lhsOperator(lhsString, opt)
+                return Expression.lhsOperator(lhs, opt)
             } else {
-                return Expression.lhsOperatorRhs(lhsString, opt, newRhs)
+                return Expression.lhsOperatorRhs(lhs, opt, newRhs)
             }
         }
         return expression
