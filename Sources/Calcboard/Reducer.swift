@@ -20,7 +20,7 @@ struct Reducer {
         case .equals:
             return evaluate(expression)
         case .backspace:
-            return expression
+            return reduceWithBackspace(expression)
         }
     }
 }
@@ -95,6 +95,34 @@ private extension Reducer {
             return new
         }
         return string
+    }
+}
+
+// MARK: - Backspace
+
+private extension Reducer {
+    func reduceWithBackspace(_ expression: Expression) -> Expression {
+        switch expression {
+        case .empty:
+            break
+        case let .lhs(lhsString):
+            let newLhs = String(lhsString.dropLast())
+            if newLhs.isEmpty {
+                return Expression.empty
+            } else {
+                return Expression.lhs(newLhs)
+            }
+        case let .lhsOperator(lhsString, _):
+            return Expression.lhs(lhsString)
+        case let .lhsOperatorRhs(lhsString, opt, rhsString):
+            let newRhs = String(rhsString.dropLast())
+            if newRhs.isEmpty {
+                return Expression.lhsOperator(lhsString, opt)
+            } else {
+                return Expression.lhsOperatorRhs(lhsString, opt, newRhs)
+            }
+        }
+        return expression
     }
 }
 
