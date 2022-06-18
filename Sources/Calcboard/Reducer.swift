@@ -18,7 +18,7 @@ struct Reducer {
         case .decimalSeparator:
             return reduce(expression, with: ".")
         case .equals:
-            return expression
+            return evaluate(expression)
         case .backspace:
             return expression
         }
@@ -72,20 +72,6 @@ private extension Reducer {
         }
         return expression
     }
-    
-    func evaluate(_ expression: Expression) -> Expression {
-        switch expression {
-        case .lhsOperatorRhs:
-            if let decimalString = evaluator.evaluate(expression), validator.isValidDecimalString(decimalString) {
-                return Expression.lhs(decimalString)
-            } else {
-                break
-            }
-        default:
-            break
-        }
-        return .empty
-    }
 }
 
 // MARK: - Decimal separator
@@ -109,5 +95,22 @@ private extension Reducer {
             return new
         }
         return string
+    }
+}
+
+// MARK: - Evaluate
+
+private extension Reducer {
+    func evaluate(_ expression: Expression) -> Expression {
+        switch expression {
+        case .lhsOperatorRhs:
+            if let decimalString = evaluator.evaluate(expression), validator.isValidDecimalString(decimalString) {
+                return Expression.lhs(decimalString)
+            } else {
+                return .empty
+            }
+        default:
+            return expression
+        }
     }
 }
