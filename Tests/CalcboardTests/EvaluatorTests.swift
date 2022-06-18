@@ -3,7 +3,7 @@ import XCTest
 
 final class EvaluatorTests: XCTestCase {
     
-    private let evaluator = Evaluator(scale: 2)
+    private let evaluator = Evaluator()
     
     func testDivizionByZero() {
         let expression = Expression.lhsOperatorRhs("1", .division, "0")

@@ -78,20 +78,19 @@ private extension Reducer {
 
 private extension Reducer {
     func reduceWithDecimalSeparator(_ expression: Expression) -> Expression {
-        let separator = "."
         switch expression {
         case .empty, .lhsOperator:
             break
         case let .lhs(lhs):
-            return Expression.lhs(appendSeparator(separator, to: lhs))
+            return Expression.lhs(appendSeparator(to: lhs))
         case let .lhsOperatorRhs(lhs, opt, rhs):
-            return Expression.lhsOperatorRhs(lhs, opt, appendSeparator(separator, to: rhs))
+            return Expression.lhsOperatorRhs(lhs, opt, appendSeparator(to: rhs))
         }
         return expression
     }
     
-    func appendSeparator(_ separator: String, to string: String) -> String {
-        let new = string + separator
+    func appendSeparator(to string: String) -> String {
+        let new = string + Constants.decimalSeparator
         if validator.isValidPartialDecimalString(new) {
             return new
         }

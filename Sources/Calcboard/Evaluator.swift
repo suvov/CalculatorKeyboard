@@ -1,12 +1,6 @@
 import Foundation
 
 struct Evaluator {
-    private let scale: Int
-
-    init(scale: Int = 2) {
-        self.scale = scale
-    }
-
     func evaluate(_ expression: Expression) -> String? {
         switch expression {
         case .lhsOperatorRhs(let lhs, let opt, let rhs):
@@ -25,6 +19,7 @@ private extension Evaluator {
             return nil
         }
         var result: Decimal?
+        let scale = Constants.decimalScale
         switch opt {
         case .addition:
             result = (lhsDecimal + rhsDecimal).rounded(scale, .bankers)
