@@ -16,6 +16,14 @@ final class Transformer {
     }
     
     func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
-        Just(.init(text: "", decimalValue: nil)).eraseToAnyPublisher()
+        var expression = Expression.empty
+        return input
+            .map { [unowned self] input -> Output in
+                expression = self.reducer.reduce(expression, with: input)
+                let text = self.formatter.string(from: expression)
+                let decimalValue = expression.value
+                return Output(text: text, decimalValue: decimalValue)
+            }
+            .eraseToAnyPublisher()
     }
 }
