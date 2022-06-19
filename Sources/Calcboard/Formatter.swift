@@ -33,7 +33,7 @@ struct Formatter {
 private extension Formatter {
     func formattedString(from string: String) -> String {
         guard !string.hasZeroesRightAfterSeparator(Constants.decimalSeparator),
-              let decimal = Decimal(string: string),
+              let decimal = Decimal(string: string, locale: Constants.locale),
               let formatted = formatter.string(from: decimal as NSDecimalNumber)
         else {
             return localizeSeparator(string)

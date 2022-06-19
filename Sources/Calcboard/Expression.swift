@@ -12,6 +12,6 @@ extension Expression {
         guard case .lhs(let value) = self else {
             return nil
         }
-        return Decimal(string: value)
+        return Decimal(string: value, locale: Constants.locale)
     }
 }

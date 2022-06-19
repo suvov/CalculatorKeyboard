@@ -13,8 +13,8 @@ struct Evaluator {
 
 private extension Evaluator {
     func evaluate(lhs: String, rhs: String, opt: Operator) -> String? {
-        guard let lhsDecimal = Decimal(string: lhs),
-              let rhsDecimal = Decimal(string: rhs)
+        guard let lhsDecimal = Decimal(string: lhs, locale: Constants.locale),
+              let rhsDecimal = Decimal(string: rhs, locale: Constants.locale)
         else {
             return nil
         }
