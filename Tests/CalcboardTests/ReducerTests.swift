@@ -91,42 +91,47 @@ class ReducerTests: XCTestCase {
     
     // MARK: - Append decimal separator
     
+    // "" + "." -> ""
     func testAppendingSeparatorToEmpty() {
         let expression = Expression.empty
         XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
                        Expression.empty)
     }
     
+    // "1 + " + "." -> ""
     func testAppendingSeparatorToLhsOperator() {
-        let expression = Expression.empty
-        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator), Expression.empty)
+        let expression = Expression.lhsOperator("1", .addition)
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator), expression)
     }
     
-    func testAppendingSeparatorToLhsCaseOne() {
+    // "0" + "." -> "0."
+    func testAppendingSeparatorToLhsCase1() {
         let expression = Expression.lhs("0")
         XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
                        Expression.lhs("0."))
     }
     
-    func testAppendingSeparatorToLhsCaseTwo() {
+    // "0." + "." -> "0."
+    func testAppendingSeparatorToLhsCase2() {
         let expression = Expression.lhs("0.")
-        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
-                       Expression.lhs("0."))
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator), expression)
     }
     
-    func testAppendingSeparatorToLhsOperatorRhsCaseOne() {
+    // "1 + 1" + "." -> "1 + 1."
+    func testAppendingSeparatorToLhsOperatorRhsCase1() {
         let expression = Expression.lhsOperatorRhs("1", .addition, "1")
         XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
                        Expression.lhsOperatorRhs("1", .addition, "1."))
     }
     
-    func testAppendingSeparatorToLhsOperatorRhsCaseTwo() {
+    // "1 + 1." + "." -> "1 + 1."
+    func testAppendingSeparatorToLhsOperatorRhsCase2() {
         let expression = Expression.lhsOperatorRhs("1", .addition, "1.")
-        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
-                       Expression.lhsOperatorRhs("1", .addition, "1."))
+        XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator), expression)
     }
     
-    func testAppendingSeparatorToLhsOperatorRhsCaseThree() {
+    // "1.99 + 0" + "." -> "1.99 + 0."
+    func testAppendingSeparatorToLhsOperatorRhsCase3() {
         let expression = Expression.lhsOperatorRhs("1.99", .addition, "0")
         XCTAssertEqual(reducer.reduce(expression, with: .decimalSeparator),
                        Expression.lhsOperatorRhs("1.99", .addition, "0."))
@@ -156,14 +161,14 @@ class ReducerTests: XCTestCase {
     // MARK: - Backspace
     
     // "12" + "􁂈" -> "1"
-    func testDropsLastOnLhsCaseOne() {
+    func testDropsLastOnLhsCase1() {
         let expression = Expression.lhs("12")
         XCTAssertEqual(reducer.reduce(expression, with: .backspace),
                        Expression.lhs("1"))
     }
     
     // "1" + "􁂈" -> ""
-    func testDropsLastOnLhsCaseTwo() {
+    func testDropsLastOnLhsCase2() {
         let expression = Expression.lhs("1")
         XCTAssertEqual(reducer.reduce(expression, with: .backspace),
                        Expression.empty)
@@ -177,14 +182,14 @@ class ReducerTests: XCTestCase {
     }
     
     // "3 × 10" + "􁂈" -> "3 × 1"
-    func testDropsLastOnLhsOperatorRhsCaseOne() {
+    func testDropsLastOnLhsOperatorRhsCase1() {
         let expression = Expression.lhsOperatorRhs("3", .multiplication, "10")
         XCTAssertEqual(reducer.reduce(expression, with: .backspace),
                        Expression.lhsOperatorRhs("3", .multiplication, "1"))
     }
     
     // "3 × 1" + "􁂈" -> "3 ×"
-    func testDropsLastOnLhsOperatorRhsCaseTwo() {
+    func testDropsLastOnLhsOperatorRhsCase2() {
         let expression = Expression.lhsOperatorRhs("3", .multiplication, "1")
         XCTAssertEqual(reducer.reduce(expression, with: .backspace),
                        Expression.lhsOperator("3", .multiplication))
