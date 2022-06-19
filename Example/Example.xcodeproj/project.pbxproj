@@ -12,6 +12,8 @@
 		E7150201285A1C2600AA7558 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150200285A1C2600AA7558 /* Assets.xcassets */; };
 		E7150204285A1C2600AA7558 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150203285A1C2600AA7558 /* Preview Assets.xcassets */; };
 		E715020E285A1C9E00AA7558 /* Calcboard in Frameworks */ = {isa = PBXBuildFile; productRef = E715020D285A1C9E00AA7558 /* Calcboard */; };
+		E7150215285F312C00AA7558 /* CalculatorSUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7150214285F312C00AA7558 /* CalculatorSUITextField.swift */; };
+		E7150218285F369800AA7558 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E7150217285F369800AA7558 /* Introspect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,7 @@
 		E7150200285A1C2600AA7558 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7150203285A1C2600AA7558 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E715020B285A1C7D00AA7558 /* Calcboard */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Calcboard; path = ..; sourceTree = "<group>"; };
+		E7150214285F312C00AA7558 /* CalculatorSUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorSUITextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +32,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E715020E285A1C9E00AA7558 /* Calcboard in Frameworks */,
+				E7150218285F369800AA7558 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +62,7 @@
 			children = (
 				E71501FC285A1C2400AA7558 /* ExampleApp.swift */,
 				E71501FE285A1C2500AA7558 /* ContentView.swift */,
+				E7150214285F312C00AA7558 /* CalculatorSUITextField.swift */,
 				E7150200285A1C2600AA7558 /* Assets.xcassets */,
 				E7150202285A1C2600AA7558 /* Preview Content */,
 			);
@@ -105,6 +110,7 @@
 			name = Example;
 			packageProductDependencies = (
 				E715020D285A1C9E00AA7558 /* Calcboard */,
+				E7150217285F369800AA7558 /* Introspect */,
 			);
 			productName = Example;
 			productReference = E71501F9285A1C2400AA7558 /* Example.app */;
@@ -134,6 +140,9 @@
 				Base,
 			);
 			mainGroup = E71501F0285A1C2400AA7558;
+			packageReferences = (
+				E7150216285F369800AA7558 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = E71501FA285A1C2400AA7558 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -161,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71501FF285A1C2500AA7558 /* ContentView.swift in Sources */,
+				E7150215285F312C00AA7558 /* CalculatorSUITextField.swift in Sources */,
 				E71501FD285A1C2400AA7558 /* ExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,10 +373,26 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		E7150216285F369800AA7558 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		E715020D285A1C9E00AA7558 /* Calcboard */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Calcboard;
+		};
+		E7150217285F369800AA7558 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7150216285F369800AA7558 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

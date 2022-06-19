@@ -6,11 +6,21 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct ContentView: View {
+    
     var body: some View {
-        Text("Hello world!")
+        Divider()
+            .padding(.top)
+        CalculatorSUITextField()
+            .introspectTextField { textField in
+                textField.becomeFirstResponder()
+            }
+            .frame(height: 44)
             .padding()
+        Divider()
+        Spacer()
     }
 }
 
