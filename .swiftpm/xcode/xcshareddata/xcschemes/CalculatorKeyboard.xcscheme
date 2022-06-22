@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Calcboard"
-               BuildableName = "Calcboard"
-               BlueprintName = "Calcboard"
+               BlueprintIdentifier = "CalculatorKeyboard"
+               BuildableName = "CalculatorKeyboard"
+               BlueprintName = "CalculatorKeyboard"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CalculatorKeyboardTests"
+               BuildableName = "CalculatorKeyboardTests"
+               BlueprintName = "CalculatorKeyboardTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -50,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Calcboard"
-            BuildableName = "Calcboard"
-            BlueprintName = "Calcboard"
+            BlueprintIdentifier = "CalculatorKeyboard"
+            BuildableName = "CalculatorKeyboard"
+            BlueprintName = "CalculatorKeyboard"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
