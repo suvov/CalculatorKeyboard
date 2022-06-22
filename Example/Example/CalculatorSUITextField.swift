@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Calcboard
+import CalculatorKeyboard
 
 struct CalculatorSUITextField: UIViewRepresentable {
     func updateUIView(_ uiView: UITextField, context: Context) {

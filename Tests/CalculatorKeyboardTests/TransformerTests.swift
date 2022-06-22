@@ -1,6 +1,6 @@
 import Combine
 import XCTest
-@testable import Calcboard
+@testable import CalculatorKeyboard
 
 class TransformerTests: XCTestCase {
 

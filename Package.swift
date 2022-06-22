@@ -3,21 +3,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "Calcboard",
+    name: "CalculatorKeyboard",
     platforms: [.iOS(.v13)],
     products: [
         .library(
-            name: "Calcboard",
-            targets: ["Calcboard"]),
+            name: "CalculatorKeyboard",
+            targets: ["CalculatorKeyboard"]),
     ],
     dependencies: [
     ],
     targets: [
         .target(
-            name: "Calcboard",
+            name: "CalculatorKeyboard",
             dependencies: []),
         .testTarget(
-            name: "CalcboardTests",
-            dependencies: ["Calcboard"]),
+            name: "CalculatorKeyboardTests",
+            dependencies: ["CalculatorKeyboard"]),
     ]
 )

@@ -1,5 +1,5 @@
 import XCTest
-@testable import Calcboard
+@testable import CalculatorKeyboard
 
 final class ExpressionTests: XCTestCase {
     

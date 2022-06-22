@@ -11,9 +11,9 @@
 		E71501FF285A1C2500AA7558 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71501FE285A1C2500AA7558 /* ContentView.swift */; };
 		E7150201285A1C2600AA7558 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150200285A1C2600AA7558 /* Assets.xcassets */; };
 		E7150204285A1C2600AA7558 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150203285A1C2600AA7558 /* Preview Assets.xcassets */; };
-		E715020E285A1C9E00AA7558 /* Calcboard in Frameworks */ = {isa = PBXBuildFile; productRef = E715020D285A1C9E00AA7558 /* Calcboard */; };
 		E7150215285F312C00AA7558 /* CalculatorSUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7150214285F312C00AA7558 /* CalculatorSUITextField.swift */; };
 		E7150218285F369800AA7558 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E7150217285F369800AA7558 /* Introspect */; };
+		E7F5CA682862DAC500BF256E /* CalculatorKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5CA672862DAC500BF256E /* CalculatorKeyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E715020E285A1C9E00AA7558 /* Calcboard in Frameworks */,
 				E7150218285F369800AA7558 /* Introspect in Frameworks */,
+				E7F5CA682862DAC500BF256E /* CalculatorKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,8 +109,8 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				E715020D285A1C9E00AA7558 /* Calcboard */,
 				E7150217285F369800AA7558 /* Introspect */,
+				E7F5CA672862DAC500BF256E /* CalculatorKeyboard */,
 			);
 			productName = Example;
 			productReference = E71501F9285A1C2400AA7558 /* Example.app */;
@@ -385,14 +385,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E715020D285A1C9E00AA7558 /* Calcboard */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Calcboard;
-		};
 		E7150217285F369800AA7558 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E7150216285F369800AA7558 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		E7F5CA672862DAC500BF256E /* CalculatorKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CalculatorKeyboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
