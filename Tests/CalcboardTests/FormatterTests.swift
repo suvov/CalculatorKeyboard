@@ -3,8 +3,10 @@ import XCTest
 
 final class FormatterTests: XCTestCase {
     
-    private let formatterWithDotDecimal = Formatter(locale: Locale(identifier: "en_US"))
-    private let formatterWithCommaDecimal = Formatter(locale: Locale(identifier: "fr_FR"))
+    private let formatterWithDotDecimal = Formatter(validator: Validator(),
+                                                    locale: Locale(identifier: "en_US"))
+    private let formatterWithCommaDecimal = Formatter(validator: Validator(),
+                                                      locale: Locale(identifier: "fr_FR"))
 
     func testEmpty() {
         let expression = Expression.empty
@@ -12,7 +14,13 @@ final class FormatterTests: XCTestCase {
         XCTAssertEqual(formatterWithCommaDecimal.string(from: expression), "")
     }
     
-    func testLhs() {
+    func testLhsCase1() {
+        let expression = Expression.lhs("1.")
+        XCTAssertEqual(formatterWithDotDecimal.string(from: expression), "1.")
+        XCTAssertEqual(formatterWithCommaDecimal.string(from: expression), "1,")
+    }
+    
+    func testLhsCase2() {
         let expression = Expression.lhs("1.01")
         XCTAssertEqual(formatterWithDotDecimal.string(from: expression), "1.01")
         XCTAssertEqual(formatterWithCommaDecimal.string(from: expression), "1,01")

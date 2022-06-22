@@ -9,7 +9,7 @@ class TransformerTests: XCTestCase {
     private let transformer = Transformer(
         reducer: Reducer(validator: Validator(),
                          evaluator: Evaluator()),
-        formatter: Formatter()
+        formatter: Formatter(validator: Validator())
     )
 
     override func setUp() {

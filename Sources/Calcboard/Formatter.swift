@@ -1,9 +1,11 @@
 import Foundation
 
 struct Formatter {
+    private let validator: Validator
     private let formatter: NumberFormatter
 
-    init(locale: Locale = Locale.autoupdatingCurrent) {
+    init(validator: Validator, locale: Locale = Locale.autoupdatingCurrent) {
+        self.validator = validator
         self.formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.locale = locale
@@ -32,7 +34,8 @@ struct Formatter {
 
 private extension Formatter {
     func formattedString(from string: String) -> String {
-        guard !string.hasZeroesRightAfterSeparator(Constants.decimalSeparator),
+        guard validator.isValidDecimalString(string),
+              !string.hasZeroesRightAfterSeparator(Constants.decimalSeparator),
               let decimal = Decimal(string: string, locale: Constants.locale),
               let formatted = formatter.string(from: decimal as NSDecimalNumber)
         else {
