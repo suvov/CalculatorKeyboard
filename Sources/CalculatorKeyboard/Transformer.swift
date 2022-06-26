@@ -15,7 +15,7 @@ final class Transformer {
         self.formatter = formatter
     }
     
-    func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
+    func transform(input: AnyPublisher<KeyboardInput, Never>) -> AnyPublisher<Output, Never> {
         var expression = Expression.empty
         return input
             .map { [unowned self] input -> Output in

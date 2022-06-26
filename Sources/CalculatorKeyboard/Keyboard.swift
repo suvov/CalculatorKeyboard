@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 extension Keyboard {
-    var output: AnyPublisher<Input, Never> {
+    var output: AnyPublisher<KeyboardInput, Never> {
         outputSubject.eraseToAnyPublisher()
     }
 }
@@ -10,7 +10,7 @@ extension Keyboard {
 final class Keyboard: UIView {
     private let buttonFactory: ButtonFactory
     private let calculatorPanel = UIView()
-    private let outputSubject = PassthroughSubject<Input, Never>()
+    private let outputSubject = PassthroughSubject<KeyboardInput, Never>()
     
     private lazy var calculatorButtons: [UIButton] = {
         var buttons = [UIButton]()

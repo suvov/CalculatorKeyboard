@@ -18,13 +18,13 @@ class TransformerTests: XCTestCase {
     }
     
     func testLhsCase1() {
-        let inputs: [Input] = [.digit(.one)]
+        let inputs: [KeyboardInput] = [.digit(.one)]
         let expectedOutput = Transformer.Output(text: "1", decimalValue: Decimal(string: "1")!)
         testTransformsInputs(inputs, into: expectedOutput)
     }
     
     func testLhsCase2() {
-        let inputs: [Input] = [.digit(.one),
+        let inputs: [KeyboardInput] = [.digit(.one),
                               .decimalSeparator,
                               .digit(.zero),
                               .digit(.one)]
@@ -33,7 +33,7 @@ class TransformerTests: XCTestCase {
     }
     
     func testLhsCase3() {
-        let inputs: [Input] = [.digit(.one),
+        let inputs: [KeyboardInput] = [.digit(.one),
                               .decimalSeparator,
                               .digit(.one)]
         let expectedOutput = Transformer.Output(text: "1.1",
@@ -42,7 +42,7 @@ class TransformerTests: XCTestCase {
     }
     
     func testLhsCase4() {
-        let inputs: [Input] = [.digit(.one),
+        let inputs: [KeyboardInput] = [.digit(.one),
                               .decimalSeparator,
                               .digit(.one),
                               .digit(.zero)]
@@ -52,7 +52,7 @@ class TransformerTests: XCTestCase {
     }
     
     func testLhsOperator() {
-        let inputs: [Input] = [.digit(.nine),
+        let inputs: [KeyboardInput] = [.digit(.nine),
                                .decimalSeparator,
                                .digit(.two),
                                .arithmeticOperator(.addition)]
@@ -61,7 +61,7 @@ class TransformerTests: XCTestCase {
     }
     
     func testLhsOperatorRhs() {
-        let inputs: [Input] = [.digit(.three),
+        let inputs: [KeyboardInput] = [.digit(.three),
                                .decimalSeparator,
                                .digit(.two),
                                .arithmeticOperator(.addition),
@@ -73,7 +73,7 @@ class TransformerTests: XCTestCase {
     }
     
     func testCalculates() {
-        let inputs: [Input] = [.digit(.three),
+        let inputs: [KeyboardInput] = [.digit(.three),
                                .decimalSeparator,
                                .digit(.two),
                                .arithmeticOperator(.addition),
@@ -87,8 +87,8 @@ class TransformerTests: XCTestCase {
 }
 
 private extension TransformerTests {
-    func testTransformsInputs(_ inputs: [Input], into expectedOutput: Transformer.Output) {
-        let inputSubject = PassthroughSubject<Input, Never>()
+    func testTransformsInputs(_ inputs: [KeyboardInput], into expectedOutput: Transformer.Output) {
+        let inputSubject = PassthroughSubject<KeyboardInput, Never>()
         
         let output = transformer.transform(input: inputSubject.eraseToAnyPublisher())
         
