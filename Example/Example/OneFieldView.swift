@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Introspect
 import CalculatorKeyboard
 
 struct OneFieldView: View {
@@ -15,45 +14,43 @@ struct OneFieldView: View {
     var model: OneFieldViewModel
 
     var body: some View {
-        Divider()
-            .padding(.top)
-        CalculatorTextView(model: model.textFieldModel)
-            .introspectTextField { textField in
-                textField.becomeFirstResponder()
+        VStack {
+            Divider()
+            CalculatorTextView(model: model.calculatorTextViewModel)
+                .padding()
+                .frame(height: 44)
+
+            Divider()
+
+            HStack {
+                Text("Current value:")
+                Spacer()
+                Text("\(model.decimalValueDescription)")
+                    .foregroundColor(.red)
             }
-            .frame(height: 44)
             .padding()
 
-        Divider()
+            Divider()
 
-        HStack {
-            Text("Current value:")
+            HStack {
+                Text("Set value:")
+                Spacer()
+                Button("nil", action: {
+                    model.setDecimal(nil)
+                }).padding(.horizontal)
+
+                Button("5.99", action: {
+                    model.setDecimal(Decimal(string: "5.99"))
+                }).padding(.horizontal)
+
+                Button("10", action: {
+                    model.setDecimal(Decimal(string: "10"))
+                }).padding(.horizontal)
+
+            }
+            .padding()
+
             Spacer()
-            Text("\(model.currentDecimalValueDescription)")
-                .foregroundColor(.red)
         }
-        .padding()
-
-        Divider()
-
-        HStack {
-            Text("Set value:")
-            Spacer()
-            Button("nil", action: {
-                model.setDecimal(nil)
-            }).padding(.horizontal)
-
-            Button("499.99", action: {
-                model.setDecimal(Decimal(string: "499.99"))
-            }).padding(.horizontal)
-
-            Button("1000", action: {
-                model.setDecimal(Decimal(string: "1000"))
-            }).padding(.horizontal)
-
-        }
-        .padding()
-
-        Spacer()
     }
 }

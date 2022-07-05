@@ -10,26 +10,26 @@ import Combine
 import CalculatorKeyboard
 
 final class OneFieldViewModel: ObservableObject {
-    let textFieldModel = CalculatorTextViewModel()
+    let calculatorTextViewModel = CalculatorTextViewModel()
 
     private var subscriptions = Set<AnyCancellable>()
 
     init() {
-        textFieldModel.decimalValueOutput
+        calculatorTextViewModel.decimalValueOutput
             .sink { [unowned self] in
                 if let value = $0 {
-                    self.currentDecimalValueDescription = "\(value)"
+                    self.decimalValueDescription = "\(value)"
                 } else {
-                    self.currentDecimalValueDescription = "nil"
+                    self.decimalValueDescription = "nil"
                 }
             }
             .store(in: &subscriptions)
     }
 
     func setDecimal(_ decimal: Decimal?) {
-        textFieldModel.decimalValueInput.send(decimal)
+        calculatorTextViewModel.decimalValueInput.send(decimal)
     }
 
     @Published
-    var currentDecimalValueDescription: String = "nil"
+    var decimalValueDescription: String = "nil"
 }

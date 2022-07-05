@@ -12,11 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         OneFieldView(model: OneFieldViewModel())
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+            .introspectTextField { textField in
+                textField.becomeFirstResponder()
+            }
+            .padding(.top)
     }
 }
