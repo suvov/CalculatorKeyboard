@@ -37,16 +37,18 @@ struct OneFieldView: View {
                 Spacer()
                 Button("nil", action: {
                     model.setDecimal(nil)
-                }).padding(.horizontal)
+                })
+                .padding(.horizontal)
 
                 Button("5.99", action: {
                     model.setDecimal(Decimal(string: "5.99"))
-                }).padding(.horizontal)
+                })
+                .padding(.horizontal)
 
                 Button("10", action: {
                     model.setDecimal(Decimal(string: "10"))
-                }).padding(.horizontal)
-
+                })
+                .padding(.horizontal)
             }
             .padding()
 

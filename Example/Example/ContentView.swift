@@ -6,15 +6,10 @@
 //
 
 import SwiftUI
-import Introspect
 
 struct ContentView: View {
     
     var body: some View {
-        OneFieldView(model: OneFieldViewModel())
-            .introspectTextField { textField in
-                textField.becomeFirstResponder()
-            }
-            .padding(.top)
+        TwoFieldsView(model: TwoFieldsViewModel())
     }
 }
