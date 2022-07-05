@@ -18,8 +18,12 @@ public class CalculatorTextViewModel: ObservableObject {
 
     public init() {}
 
-    func setInput(_ keyboardInput: AnyPublisher<KeyboardInput, Never>) {
-        configureTransformer(keyboardInput)
+    var keyboardInput: AnyPublisher<KeyboardInput, Never>? {
+        didSet {
+            if oldValue == nil, let keyboardInput = keyboardInput {
+                configureTransformer(keyboardInput)
+            }
+        }
     }
 
     private let decimalValueInputSubject = PassthroughSubject<Decimal?, Never>()
@@ -38,18 +42,21 @@ public class CalculatorTextViewModel: ObservableObject {
 
 private extension CalculatorTextViewModel {
     func configureTransformer(_ keyboardInput: AnyPublisher<KeyboardInput, Never>) {
-        let transformerInput = Transformer.Input(
+        let input = Transformer.Input(
             keyboard: keyboardInput,
             decimalValue: decimalValueInputSubject.eraseToAnyPublisher()
         )
-        transformer.transform(input: transformerInput)
+
+        let output = transformer.transform(input: input)
+
+        output
             .text
             .sink { [unowned self] in
                 self.text = $0
             }
             .store(in: &subscriptions)
 
-        transformer.transform(input: transformerInput)
+        output
             .decimalValue
             .sink { [unowned self] in
                 self.decimalValueOutputSubject.send($0)

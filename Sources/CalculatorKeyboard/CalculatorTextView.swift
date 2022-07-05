@@ -3,35 +3,43 @@ import Combine
 
 public struct CalculatorTextView: UIViewRepresentable {
 
-    public init(model: CalculatorTextViewModel){
-        let keyboard = Keyboard()
-        self.inputView = keyboard
+    public init(model: CalculatorTextViewModel,
+                customTextField: UITextField? = nil) {
         self.model = model
-        model.setInput(keyboard.output)
+        self.textField = customTextField ?? DefaultUITextField()
+        let keyboard = Keyboard()
+        self.textField.inputView = keyboard
+        model.keyboardInput = keyboard.output
     }
 
-    private let inputView: UIView
-    
     @ObservedObject
     private var model: CalculatorTextViewModel
+    private let textField: UITextField
 
     public func updateUIView(_ uiView: UITextField, context: Context) {
         uiView.text = model.text
     }
 
     public func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextField {
-        let textField = UIKitTextField()
-        textField.font = UIFont.preferredFont(forTextStyle: .title1)
-        textField.adjustsFontSizeToFitWidth = true
-        textField.textAlignment = .right
-        textField.placeholder = "0"
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        textField.inputView = inputView
         return textField
     }
 }
 
-private class UIKitTextField: UITextField {
+private class DefaultUITextField: UITextField {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        font = UIFont.preferredFont(forTextStyle: .title1)
+        adjustsFontSizeToFitWidth = true
+        textAlignment = .right
+        placeholder = "0"
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         false
     }
