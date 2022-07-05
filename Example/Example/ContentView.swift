@@ -11,16 +11,7 @@ import Introspect
 struct ContentView: View {
     
     var body: some View {
-        Divider()
-            .padding(.top)
-        CalculatorSUITextField()
-            .introspectTextField { textField in
-                textField.becomeFirstResponder()
-            }
-            .frame(height: 44)
-            .padding()
-        Divider()
-        Spacer()
+        OneFieldView(model: OneFieldViewModel())
     }
 }
 
