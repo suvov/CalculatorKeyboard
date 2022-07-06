@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Introspect
 
 struct TwoFieldsView: View {
     
@@ -17,9 +16,6 @@ struct TwoFieldsView: View {
         VStack {
             Text("🇺🇸 USD").font(.caption)
             DecimalInputView(model: model.textFieldModelUSD)
-                .introspectTextField {
-                    $0.becomeFirstResponder()
-                }
             Text("🇪🇺 EUR").font(.caption)
             DecimalInputView(model: model.textFieldModelEUR)
         }
