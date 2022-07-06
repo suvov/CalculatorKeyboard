@@ -22,7 +22,28 @@ public struct CalculatorTextView: UIViewRepresentable {
 
     public func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextField {
         textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        textField.delegate = context.coordinator
         return textField
+    }
+
+    public func makeCoordinator() -> Coordinator {
+        Coordinator(isFocusedSubject: model.isFocusedSubject)
+    }
+
+    public class Coordinator: NSObject, UITextFieldDelegate {
+        let isFocusedSubject: PassthroughSubject<Bool, Never>
+
+        init(isFocusedSubject: PassthroughSubject<Bool, Never>) {
+            self.isFocusedSubject = isFocusedSubject
+        }
+
+        public func textFieldDidBeginEditing(_ textField: UITextField) {
+            isFocusedSubject.send(true)
+        }
+
+        public func textFieldDidEndEditing(_ textField: UITextField) {
+            isFocusedSubject.send(false)
+        }
     }
 }
 

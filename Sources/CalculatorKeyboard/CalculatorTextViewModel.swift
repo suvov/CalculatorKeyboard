@@ -9,6 +9,10 @@ public extension CalculatorTextViewModel {
     var decimalValueInput: PassthroughSubject<Decimal?, Never> {
         decimalValueInputSubject
     }
+
+    var isFocused: AnyPublisher<Bool, Never> {
+        isFocusedSubject.eraseToAnyPublisher()
+    }
 }
 
 public class CalculatorTextViewModel: ObservableObject {
@@ -26,8 +30,10 @@ public class CalculatorTextViewModel: ObservableObject {
         }
     }
 
+    let isFocusedSubject = PassthroughSubject<Bool, Never>()
+
     private let decimalValueInputSubject = PassthroughSubject<Decimal?, Never>()
-    private let decimalValueOutputSubject = PassthroughSubject<Decimal?, Never>()
+    private let decimalValueOutputSubject = CurrentValueSubject<Decimal?, Never>(nil)
 
     private let transformer: Transformer = {
         let validator = Validator()
