@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Introspect
-import CalculatorKeyboard
 
 struct TwoFieldsView: View {
     
@@ -15,11 +14,14 @@ struct TwoFieldsView: View {
     var model: TwoFieldsViewModel
     
     var body: some View {
-        ScrollView {
+        VStack {
             Text("🇺🇸 USD").font(.caption)
-            OneFieldView(model: model.textFieldModelOne)
+            DecimalInputView(model: model.textFieldModelUSD)
+                .introspectTextField {
+                    $0.becomeFirstResponder()
+                }
             Text("🇪🇺 EUR").font(.caption)
-            OneFieldView(model: model.textFieldModelTwo)
+            DecimalInputView(model: model.textFieldModelEUR)
         }
     }
 }

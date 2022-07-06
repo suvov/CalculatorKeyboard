@@ -10,12 +10,27 @@ import Combine
 import CalculatorKeyboard
 
 final class OneFieldViewModel: ObservableObject {
-    let calculatorTextViewModel = CalculatorTextViewModel()
+    // MARK: Child models
+
+    let textFieldModel = CalculatorTextViewModel()
+
+    func setDecimal(_ decimal: Decimal?) {
+        textFieldModel.decimalValueInput.send(decimal)
+    }
+
+    @Published
+    var decimalValueDescription: String = "nil"
 
     private var subscriptions = Set<AnyCancellable>()
 
     init() {
-        calculatorTextViewModel.decimalValueOutput
+        configure()
+    }
+}
+
+private extension OneFieldViewModel {
+    func configure() {
+        textFieldModel.decimalValueOutput
             .sink { [unowned self] in
                 if let value = $0 {
                     self.decimalValueDescription = "\(value)"
@@ -25,11 +40,4 @@ final class OneFieldViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
     }
-
-    func setDecimal(_ decimal: Decimal?) {
-        calculatorTextViewModel.decimalValueInput.send(decimal)
-    }
-
-    @Published
-    var decimalValueDescription: String = "nil"
 }

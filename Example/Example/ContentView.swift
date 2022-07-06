@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    private let oneField = false
+
     var body: some View {
-        TwoFieldsView(model: TwoFieldsViewModel())
+        VStack {
+            if oneField {
+                OneFieldView(model: OneFieldViewModel())
+            } else {
+                TwoFieldsView(model: TwoFieldsViewModel())
+            }
+            Spacer()
+        }
+        .padding(.top)
     }
 }
