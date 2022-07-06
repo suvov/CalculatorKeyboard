@@ -30,11 +30,12 @@ final class Transformer {
                 return self.reducer.reduce(localExpression, with: keyboardInput)
             }
             .eraseToAnyPublisher()
-
+        
         let expressionFromDecimalValueInput = input.decimalValue
             .map { decimalValue -> Expression in
                 if let decimalValue = decimalValue {
-                    return .lhs(decimalValue.string)
+                    let scale = Constants.decimalScale
+                    return .lhs(decimalValue.rounded(scale, .bankers).string)
                 } else {
                     return .empty
                 }
