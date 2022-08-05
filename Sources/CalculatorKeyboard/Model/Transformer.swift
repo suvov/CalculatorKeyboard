@@ -3,7 +3,7 @@ import Combine
 
 extension Transformer {
     struct Input {
-        let keyboard: AnyPublisher<KeyboardInput, Never>
+        let calculator: AnyPublisher<CalculatorInput, Never>
         let decimalValue: AnyPublisher<Decimal?, Never>
     }
 
@@ -25,7 +25,7 @@ final class Transformer {
     func transform(input: Input) -> Output {
         var localExpression = Expression.empty
 
-        let expressionFromKeyboardInput = input.keyboard
+        let expressionFromCalculatorInput = input.calculator
             .map { [unowned self] keyboardInput -> Expression in
                 return self.reducer.reduce(localExpression, with: keyboardInput)
             }
@@ -42,7 +42,7 @@ final class Transformer {
             }
 
         let expression = Publishers.Merge(
-            expressionFromKeyboardInput,
+            expressionFromCalculatorInput,
             expressionFromDecimalValueInput
         ).handleEvents(receiveOutput: {
             localExpression = $0

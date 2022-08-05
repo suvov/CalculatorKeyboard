@@ -19,13 +19,13 @@ class TransformerTests: XCTestCase {
     }
 
     func testLhsCase1() {
-        let inputs: [KeyboardInput] = [.digit(.one)]
+        let inputs: [CalculatorInput] = [.digit(.one)]
         let expected: Output = (text: "1", decimalValue: Decimal(string: "1")!)
         testTransformsKeyboardInputs(inputs, into: expected)
     }
 
     func testLhsCase2() {
-        let inputs: [KeyboardInput] = [.digit(.one),
+        let inputs: [CalculatorInput] = [.digit(.one),
                               .decimalSeparator,
                               .digit(.zero),
                               .digit(.one)]
@@ -34,7 +34,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testLhsCase3() {
-        let inputs: [KeyboardInput] = [.digit(.one),
+        let inputs: [CalculatorInput] = [.digit(.one),
                               .decimalSeparator,
                               .digit(.one)]
         let expected: Output = (text: "1.1", decimalValue: Decimal(string: "1.1"))
@@ -42,7 +42,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testLhsCase4() {
-        let inputs: [KeyboardInput] = [.digit(.one),
+        let inputs: [CalculatorInput] = [.digit(.one),
                               .decimalSeparator,
                               .digit(.one),
                               .digit(.zero)]
@@ -51,7 +51,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testLhsOperator() {
-        let inputs: [KeyboardInput] = [.digit(.nine),
+        let inputs: [CalculatorInput] = [.digit(.nine),
                                .decimalSeparator,
                                .digit(.two),
                                .arithmeticOperator(.addition)]
@@ -60,7 +60,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testLhsOperatorRhs() {
-        let inputs: [KeyboardInput] = [.digit(.three),
+        let inputs: [CalculatorInput] = [.digit(.three),
                                .decimalSeparator,
                                .digit(.two),
                                .arithmeticOperator(.addition),
@@ -72,7 +72,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testCalculates() {
-        let inputs: [KeyboardInput] = [.digit(.three),
+        let inputs: [CalculatorInput] = [.digit(.three),
                                .decimalSeparator,
                                .digit(.two),
                                .arithmeticOperator(.addition),
@@ -85,13 +85,13 @@ class TransformerTests: XCTestCase {
     }
 
     func testSetsDecimalValueEmpty() {
-        let inputs: [KeyboardInput] = []
+        let inputs: [CalculatorInput] = []
         let decimal = Decimal(string: "8")
         testSetsDecimalValue(keyboardInputs: inputs, decimal: decimal, into: "8")
     }
 
     func testSetsDecimalValueLhs() {
-        let inputs: [KeyboardInput] = [.digit(.three),
+        let inputs: [CalculatorInput] = [.digit(.three),
                                        .decimalSeparator,
                                        .digit(.two)]
         let decimal = Decimal(string: "8")
@@ -99,7 +99,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testSetsDecimalValueLhsOperator() {
-        let inputs: [KeyboardInput] = [.digit(.three),
+        let inputs: [CalculatorInput] = [.digit(.three),
                                        .decimalSeparator,
                                        .digit(.two),
                                        .arithmeticOperator(.addition)]
@@ -108,7 +108,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testSetsDecimalValueLhsOperatorRhs() {
-        let inputs: [KeyboardInput] = [.digit(.three),
+        let inputs: [CalculatorInput] = [.digit(.three),
                                        .decimalSeparator,
                                        .digit(.two),
                                        .arithmeticOperator(.addition),
@@ -120,7 +120,7 @@ class TransformerTests: XCTestCase {
     }
 
     func testSetsDecimalValueNil() {
-        let inputs: [KeyboardInput] = [.digit(.three),
+        let inputs: [CalculatorInput] = [.digit(.three),
                                        .decimalSeparator,
                                        .digit(.two)]
         testSetsDecimalValue(keyboardInputs: inputs, decimal: nil, into: "")
@@ -128,13 +128,13 @@ class TransformerTests: XCTestCase {
 }
 
 private extension TransformerTests {
-    func testTransformsKeyboardInputs(_ keyboardInputs: [KeyboardInput],
+    func testTransformsKeyboardInputs(_ keyboardInputs: [CalculatorInput],
                                       into expected: (String, Decimal?)) {
-        let keyboardSubject = PassthroughSubject<KeyboardInput, Never>()
+        let calculatorSubject = PassthroughSubject<CalculatorInput, Never>()
         let decimalSubject = Empty<Decimal?, Never>()
 
         let transformerInput = Transformer.Input(
-            keyboard: keyboardSubject.eraseToAnyPublisher(),
+            calculator: calculatorSubject.eraseToAnyPublisher(),
             decimalValue: decimalSubject.eraseToAnyPublisher()
         )
         let output = transformer.transform(input: transformerInput)
@@ -153,7 +153,7 @@ private extension TransformerTests {
             }
             .store(in: &subscriptions)
         for input in keyboardInputs {
-            keyboardSubject.send(input)
+            calculatorSubject.send(input)
         }
 
         waitForExpectations(timeout: 1)
@@ -161,14 +161,14 @@ private extension TransformerTests {
         XCTAssertEqual(received?.1, expected.1)
     }
 
-    func testSetsDecimalValue(keyboardInputs: [KeyboardInput],
+    func testSetsDecimalValue(keyboardInputs: [CalculatorInput],
                               decimal: Decimal?,
                               into expected: String) {
-        let keyboardSubject = PassthroughSubject<KeyboardInput, Never>()
+        let calculatorSubject = PassthroughSubject<CalculatorInput, Never>()
         let decimalSubject = PassthroughSubject<Decimal?, Never>()
 
         let transformerInput = Transformer.Input(
-            keyboard:  keyboardSubject.eraseToAnyPublisher(),
+            calculator:  calculatorSubject.eraseToAnyPublisher(),
             decimalValue: decimalSubject.eraseToAnyPublisher()
         )
         let output = transformer.transform(input: transformerInput)
@@ -188,7 +188,7 @@ private extension TransformerTests {
             .store(in: &subscriptions)
 
         for input in keyboardInputs {
-            keyboardSubject.send(input)
+            calculatorSubject.send(input)
         }
         decimalSubject.send(decimal)
 

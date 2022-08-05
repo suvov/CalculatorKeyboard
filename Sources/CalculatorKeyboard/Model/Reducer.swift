@@ -9,7 +9,7 @@ struct Reducer {
         self.evaluator = evaluator
     }
 
-    func reduce(_ expression: Expression, with input: KeyboardInput) -> Expression {
+    func reduce(_ expression: Expression, with input: CalculatorInput) -> Expression {
         switch input {
         case let .digit(digit):
             return reduce(expression, with: digit)
