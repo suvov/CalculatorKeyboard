@@ -14,6 +14,7 @@
 		E77148F5289CF40100D9957F /* OneInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F4289CF40100D9957F /* OneInputExampleView.swift */; };
 		E77148F7289CF40400D9957F /* CalculatorTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */; };
 		E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F8289CF4DF00D9957F /* DisplayValueView.swift */; };
+		E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148FB289D1FCF00D9957F /* SetValueView.swift */; };
 		E7F5CA682862DAC500BF256E /* CalculatorKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5CA672862DAC500BF256E /* CalculatorKeyboard */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		E77148F4289CF40100D9957F /* OneInputExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneInputExampleView.swift; sourceTree = "<group>"; };
 		E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTextFieldView.swift; sourceTree = "<group>"; };
 		E77148F8289CF4DF00D9957F /* DisplayValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayValueView.swift; sourceTree = "<group>"; };
+		E77148FB289D1FCF00D9957F /* SetValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetValueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		E77148FA289D1F8600D9957F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E77148FB289D1FCF00D9957F /* SetValueView.swift */,
 				E77148F8289CF4DF00D9957F /* DisplayValueView.swift */,
 			);
 			path = View;
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71501FF285A1C2500AA7558 /* ContentView.swift in Sources */,
+				E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */,
 				E71501FD285A1C2400AA7558 /* ExampleApp.swift in Sources */,
 				E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */,
 				E77148F7289CF40400D9957F /* CalculatorTextFieldView.swift in Sources */,

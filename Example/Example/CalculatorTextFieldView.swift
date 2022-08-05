@@ -10,7 +10,9 @@ import Combine
 import CalculatorKeyboard
 
 struct CalculatorTextFieldView: UIViewRepresentable {
-    var onDecimalValueChange: ((Decimal?) -> Void)?
+
+    @Binding
+    var decimalValue: Decimal?
 
     func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextField {
         let textField = CalculatorTextField()
@@ -25,7 +27,9 @@ struct CalculatorTextFieldView: UIViewRepresentable {
         return textField
     }
 
-    func updateUIView(_ uiView: UITextField, context: Context) {}
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        (uiView as? CalculatorTextField)?.setDecimalValue(decimalValue)
+    }
 
     func makeCoordinator() -> Self.Coordinator {
         Coordinator(self)
@@ -34,7 +38,7 @@ struct CalculatorTextFieldView: UIViewRepresentable {
     class Coordinator {
 
         func setDecimalValue(_ value: Decimal?) {
-            parent.onDecimalValueChange?(value)
+            parent.decimalValue = value
         }
 
         private var parent: CalculatorTextFieldView
