@@ -1,17 +1,13 @@
 import UIKit
 import Combine
 
-extension CalculatorTextField {
-    public var decimalValue: AnyPublisher<Decimal?, Never> {
-        decimalValueOutputSubject.eraseToAnyPublisher()
-    }
+public class CalculatorTextField: UITextField {
+    public var onDecimalValueChange: ((Decimal?) -> Void)?
 
     public func setDecimalValue(_ value: Decimal?) {
         decimalValueInputSubject.send(value)
     }
-}
 
-public class CalculatorTextField: UITextField {
     private lazy var transformer: Transformer = {
         let validator = Validator()
         let evaluator = Evaluator()
@@ -21,7 +17,6 @@ public class CalculatorTextField: UITextField {
     }()
 
     private var subcriptions = Set<AnyCancellable>()
-    private let decimalValueOutputSubject = PassthroughSubject<Decimal?, Never>()
     private let decimalValueInputSubject = PassthroughSubject<Decimal?, Never>()
 
     public init() {
@@ -32,9 +27,17 @@ public class CalculatorTextField: UITextField {
             calculator: keyboard.output,
             decimalValue: decimalValueInputSubject.eraseToAnyPublisher()
         )
-        transformer.transform(input: input).text
+        let output = transformer.transform(input: input)
+        
+        output.text
             .sink { [unowned self] in
                 self.text = $0
+            }
+            .store(in: &subcriptions)
+
+        output.decimalValue
+            .sink { [unowned self] in
+                self.onDecimalValueChange?($0)
             }
             .store(in: &subcriptions)
     }
