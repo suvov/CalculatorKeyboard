@@ -14,4 +14,20 @@ extension Expression {
         }
         return Decimal(string: value, locale: Constants.locale)
     }
+
+    static func makeWithValue(_ value: Decimal?) -> Expression {
+        if let value = value {
+            let scale = Constants.decimalScale
+            return .lhs(value.rounded(scale, .bankers).string)
+        } else {
+            return .empty
+        }
+    }
+}
+
+private extension Decimal {
+    var string: String {
+        var value = self
+        return NSDecimalString(&value, Constants.locale)
+    }
 }

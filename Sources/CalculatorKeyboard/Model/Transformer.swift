@@ -29,16 +29,12 @@ final class Transformer {
             .map { [unowned self] keyboardInput -> Expression in
                 return self.reducer.reduce(localExpression, with: keyboardInput)
             }
+            .share()
             .eraseToAnyPublisher()
         
         let expressionFromDecimalValueInput = input.decimalValue
-            .map { decimalValue -> Expression in
-                if let decimalValue = decimalValue {
-                    let scale = Constants.decimalScale
-                    return .lhs(decimalValue.rounded(scale, .bankers).string)
-                } else {
-                    return .empty
-                }
+            .map {
+                Expression.makeWithValue($0)
             }
 
         let expression = Publishers.Merge(
@@ -46,23 +42,16 @@ final class Transformer {
             expressionFromDecimalValueInput
         ).handleEvents(receiveOutput: {
             localExpression = $0
-        }).share()
+        })
 
         let text = expression.map { [unowned self] in
             self.formatter.string(from: $0)
         }.eraseToAnyPublisher()
 
-        let decimalValue = expression.map {
+        let decimalValue = expressionFromCalculatorInput.map {
             $0.value
         }.eraseToAnyPublisher()
 
         return Output(text: text, decimalValue: decimalValue)
-    }
-}
-
-private extension Decimal {
-    var string: String {
-        var value = self
-        return NSDecimalString(&value, Constants.locale)
     }
 }
