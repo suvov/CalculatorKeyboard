@@ -51,7 +51,6 @@ final class Transformer {
             expressionFromCalculatorInput,
             expressionFromDecimalValueInput
         ).handleEvents(receiveOutput: {
-            print($0)
             localExpression = $0
         })
 
