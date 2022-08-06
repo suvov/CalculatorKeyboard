@@ -24,23 +24,34 @@ final class Transformer {
 
     func transform(input: Input) -> Output {
         var localExpression = Expression.empty
+        var lastCalculatorInput: Date?
 
         let expressionFromCalculatorInput = input.calculator
             .map { [unowned self] keyboardInput -> Expression in
+                lastCalculatorInput = Date()
                 return self.reducer.reduce(localExpression, with: keyboardInput)
             }
             .share()
             .eraseToAnyPublisher()
         
         let expressionFromDecimalValueInput = input.decimalValue
-            .map {
-                Expression.makeWithValue($0)
+            .compactMap { value -> Expression? in
+                // if it was less than second since last calculator input,
+                // we assume that decimal input happens as a result of
+                // calculator input
+                if let lastCalculatorInput = lastCalculatorInput,
+                   Date().timeIntervalSince(lastCalculatorInput) < 1 {
+                    return nil
+                } else {
+                    return Expression.makeWithValue(value)
+                }
             }
 
         let expression = Publishers.Merge(
             expressionFromCalculatorInput,
             expressionFromDecimalValueInput
         ).handleEvents(receiveOutput: {
+            print($0)
             localExpression = $0
         })
 
