@@ -24,11 +24,11 @@ final class Transformer {
 
     func transform(input: Input) -> Output {
         var currentExpression = Expression.empty
-        var lastCalculatorInput: Date?
+        var lastCalculatorInputTime: TimeInterval?
 
         let expressionFromCalculatorInput = input.calculator
             .map { [unowned self] keyboardInput -> Expression in
-                lastCalculatorInput = Date()
+                lastCalculatorInputTime = ProcessInfo.processInfo.systemUptime
                 return self.reducer.reduce(currentExpression, with: keyboardInput)
             }
             .share()
@@ -36,14 +36,10 @@ final class Transformer {
         
         let expressionFromDecimalValueInput = input.decimalValue
             .compactMap { value -> Expression? in
-                // if it was less than second since last calculator input,
-                // we assume that decimal input happens as a result of
-                // calculator input
-                if let lastCalculatorInput = lastCalculatorInput,
-                   Date().timeIntervalSince(lastCalculatorInput) < 1 {
-                    return nil
-                } else {
+                if Self.enoughTimePassedSince(lastCalculatorInputTime) {
                     return Expression.makeWithValue(value)
+                } else {
+                    return nil
                 }
             }
 
@@ -63,5 +59,18 @@ final class Transformer {
         }.eraseToAnyPublisher()
 
         return Output(text: text, decimalValue: decimalValue)
+    }
+}
+
+private extension Transformer {
+    static func enoughTimePassedSince(_ lastCalculatorInputTime: TimeInterval?) -> Bool {
+        guard let lastCalculatorInputTime = lastCalculatorInputTime else {
+            return true
+        }
+        /* if it was less than half second since last calculator input,
+         we assume that decimal input happens as a result of
+         calculator input.
+         */
+        return (ProcessInfo.processInfo.systemUptime - lastCalculatorInputTime) > 0.5
     }
 }
