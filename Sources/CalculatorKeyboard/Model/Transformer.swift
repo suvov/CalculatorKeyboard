@@ -23,13 +23,13 @@ final class Transformer {
     }
 
     func transform(input: Input) -> Output {
-        var localExpression = Expression.empty
+        var currentExpression = Expression.empty
         var lastCalculatorInput: Date?
 
         let expressionFromCalculatorInput = input.calculator
             .map { [unowned self] keyboardInput -> Expression in
                 lastCalculatorInput = Date()
-                return self.reducer.reduce(localExpression, with: keyboardInput)
+                return self.reducer.reduce(currentExpression, with: keyboardInput)
             }
             .share()
             .eraseToAnyPublisher()
@@ -51,7 +51,7 @@ final class Transformer {
             expressionFromCalculatorInput,
             expressionFromDecimalValueInput
         ).handleEvents(receiveOutput: {
-            localExpression = $0
+            currentExpression = $0
         })
 
         let text = expression.map { [unowned self] in
