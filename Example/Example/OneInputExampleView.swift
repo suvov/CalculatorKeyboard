@@ -13,7 +13,7 @@ struct OneInputExampleView: View {
 
     var body: some View {
         VStack {
-            CalculatorTextFieldView(decimalValue: $decimalValue)
+            CalculatorTextFieldView(decimalValue: $decimalValue)                .modifier(InputField())
             DisplayValueView(value: decimalValue?.description)
             SetValueView(setValue: {
                 self.decimalValue = $0

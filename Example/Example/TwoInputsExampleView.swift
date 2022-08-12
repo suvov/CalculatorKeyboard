@@ -16,8 +16,10 @@ struct TwoInputsExampleView: View {
         VStack {
             Text("🇺🇸 USD").font(.caption)
             CalculatorTextFieldView(decimalValue: $viewModel.usdDecimalValue)
+                .modifier(InputField())
             Text("🇬🇧 GBP").font(.caption)
-            CalculatorTextFieldView(decimalValue: $viewModel.gbpDecimalValue)
+            CalculatorTextFieldView(decimalValue: $viewModel.gbpDecimalValue)                .modifier(InputField())
+
         }
     }
 }
@@ -65,4 +67,3 @@ private extension TwoInputsExampleView {
         }
     }
 }
-
