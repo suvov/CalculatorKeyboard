@@ -11,6 +11,8 @@
 		E71501FF285A1C2500AA7558 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71501FE285A1C2500AA7558 /* ContentView.swift */; };
 		E7150201285A1C2600AA7558 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150200285A1C2600AA7558 /* Assets.xcassets */; };
 		E7150204285A1C2600AA7558 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150203285A1C2600AA7558 /* Preview Assets.xcassets */; };
+		E7215A6428A694E100963299 /* TwoInputsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6328A694E100963299 /* TwoInputsExampleView.swift */; };
+		E7215A6628A6A27F00963299 /* Decimal+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6528A6A27F00963299 /* Decimal+extension.swift */; };
 		E77148F5289CF40100D9957F /* OneInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F4289CF40100D9957F /* OneInputExampleView.swift */; };
 		E77148F7289CF40400D9957F /* CalculatorTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */; };
 		E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F8289CF4DF00D9957F /* DisplayValueView.swift */; };
@@ -25,6 +27,8 @@
 		E71501FE285A1C2500AA7558 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E7150200285A1C2600AA7558 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7150203285A1C2600AA7558 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E7215A6328A694E100963299 /* TwoInputsExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoInputsExampleView.swift; sourceTree = "<group>"; };
+		E7215A6528A6A27F00963299 /* Decimal+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+extension.swift"; sourceTree = "<group>"; };
 		E77148F4289CF40100D9957F /* OneInputExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneInputExampleView.swift; sourceTree = "<group>"; };
 		E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTextFieldView.swift; sourceTree = "<group>"; };
 		E77148F8289CF4DF00D9957F /* DisplayValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayValueView.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				E71501FC285A1C2400AA7558 /* ExampleApp.swift */,
 				E71501FE285A1C2500AA7558 /* ContentView.swift */,
 				E77148F4289CF40100D9957F /* OneInputExampleView.swift */,
+				E7215A6328A694E100963299 /* TwoInputsExampleView.swift */,
+				E7215A6528A6A27F00963299 /* Decimal+extension.swift */,
 				E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */,
 				E77148FA289D1F8600D9957F /* View */,
 				E7150200285A1C2600AA7558 /* Assets.xcassets */,
@@ -183,6 +189,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71501FF285A1C2500AA7558 /* ContentView.swift in Sources */,
+				E7215A6628A6A27F00963299 /* Decimal+extension.swift in Sources */,
+				E7215A6428A694E100963299 /* TwoInputsExampleView.swift in Sources */,
 				E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */,
 				E71501FD285A1C2400AA7558 /* ExampleApp.swift in Sources */,
 				E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */,
