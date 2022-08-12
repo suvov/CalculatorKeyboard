@@ -9,7 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        OneInputExampleView()
+        TabView {
+            OneInputExampleView()
+                .tabItem {
+                    Label("One field", systemImage: "textformat.superscript")
+                }
+            TwoInputsExampleView()
+                .tabItem {
+                    Label("Two fields", systemImage: "arrow.2.squarepath")
+                }
+        }
     }
 }
-
