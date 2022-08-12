@@ -19,8 +19,9 @@ struct TwoInputsExampleView: View {
                 .modifier(InputField())
             Text("🇬🇧 GBP").font(.caption)
             CalculatorTextFieldView(decimalValue: $viewModel.gbpDecimalValue)                .modifier(InputField())
-
-        }
+            Spacer()
+            HideKeyboardButton()
+        }.padding(.vertical)
     }
 }
 
