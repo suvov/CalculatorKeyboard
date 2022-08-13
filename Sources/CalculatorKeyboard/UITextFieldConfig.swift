@@ -9,7 +9,7 @@ public struct UITextFieldConfig {
     public init(
         font: UIFont = UIFont.preferredFont(forTextStyle: .title1),
         adjustsFontSizeToFitWidth: Bool = true,
-        textAlignment: NSTextAlignment = .right,
+        textAlignment: NSTextAlignment = .left,
         placeholder: String? = "0"
     ) {
         self.font = font
