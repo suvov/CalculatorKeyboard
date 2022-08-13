@@ -10,17 +10,17 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            OneInputExampleView()
+            DecimalInputExampleView()
                 .tabItem {
-                    Label("One field", systemImage: "textformat.123")
+                    Label("Decimal input", systemImage: "textformat.123")
                 }
-            TwoInputsExampleView()
+            ConnectedInputsExampleView()
                 .tabItem {
-                    Label("Two fields", systemImage: "arrow.2.squarepath")
+                    Label("Connected inputs", systemImage: "arrow.2.squarepath")
                 }
-            NameAndValueExampleView()
+            TextAndDecimalExampleView()
                 .tabItem {
-                    Label("Name value", systemImage: "textformat.superscript")
+                    Label("Text and decimal", systemImage: "textformat.superscript")
                 }
         }
     }

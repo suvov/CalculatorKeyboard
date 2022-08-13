@@ -12,13 +12,12 @@
 		E7150201285A1C2600AA7558 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150200285A1C2600AA7558 /* Assets.xcassets */; };
 		E7150204285A1C2600AA7558 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7150203285A1C2600AA7558 /* Preview Assets.xcassets */; };
 		E71D19F628A8065C004C610C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D19F528A8065C004C610C /* HeaderView.swift */; };
-		E71D19F828A806AF004C610C /* NameAndValueExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D19F728A806AF004C610C /* NameAndValueExampleView.swift */; };
-		E7215A6428A694E100963299 /* TwoInputsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6328A694E100963299 /* TwoInputsExampleView.swift */; };
+		E71D19F828A806AF004C610C /* TextAndDecimalExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D19F728A806AF004C610C /* TextAndDecimalExampleView.swift */; };
+		E71D19FB28A809EE004C610C /* ConnectedInputsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D19F928A809EE004C610C /* ConnectedInputsExampleView.swift */; };
+		E71D19FC28A809EE004C610C /* DecimalInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D19FA28A809EE004C610C /* DecimalInputExampleView.swift */; };
 		E7215A6628A6A27F00963299 /* Decimal+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6528A6A27F00963299 /* Decimal+extension.swift */; };
 		E7215A6828A6A6CF00963299 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6728A6A6CF00963299 /* InputField.swift */; };
-		E7215A6A28A6AD5C00963299 /* View+endEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6928A6AD5C00963299 /* View+endEditing.swift */; };
 		E7215A6C28A6ADEE00963299 /* HideKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6B28A6ADEE00963299 /* HideKeyboardButton.swift */; };
-		E77148F5289CF40100D9957F /* OneInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F4289CF40100D9957F /* OneInputExampleView.swift */; };
 		E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F8289CF4DF00D9957F /* DisplayValueView.swift */; };
 		E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148FB289D1FCF00D9957F /* SetValueView.swift */; };
 		E7F5CA682862DAC500BF256E /* CalculatorKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5CA672862DAC500BF256E /* CalculatorKeyboard */; };
@@ -32,13 +31,12 @@
 		E7150200285A1C2600AA7558 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7150203285A1C2600AA7558 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E71D19F528A8065C004C610C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		E71D19F728A806AF004C610C /* NameAndValueExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameAndValueExampleView.swift; sourceTree = "<group>"; };
-		E7215A6328A694E100963299 /* TwoInputsExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoInputsExampleView.swift; sourceTree = "<group>"; };
+		E71D19F728A806AF004C610C /* TextAndDecimalExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAndDecimalExampleView.swift; sourceTree = "<group>"; };
+		E71D19F928A809EE004C610C /* ConnectedInputsExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedInputsExampleView.swift; sourceTree = "<group>"; };
+		E71D19FA28A809EE004C610C /* DecimalInputExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalInputExampleView.swift; sourceTree = "<group>"; };
 		E7215A6528A6A27F00963299 /* Decimal+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+extension.swift"; sourceTree = "<group>"; };
 		E7215A6728A6A6CF00963299 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
-		E7215A6928A6AD5C00963299 /* View+endEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+endEditing.swift"; sourceTree = "<group>"; };
 		E7215A6B28A6ADEE00963299 /* HideKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardButton.swift; sourceTree = "<group>"; };
-		E77148F4289CF40100D9957F /* OneInputExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneInputExampleView.swift; sourceTree = "<group>"; };
 		E77148F8289CF4DF00D9957F /* DisplayValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayValueView.swift; sourceTree = "<group>"; };
 		E77148FB289D1FCF00D9957F /* SetValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetValueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,9 +84,9 @@
 			children = (
 				E71501FC285A1C2400AA7558 /* ExampleApp.swift */,
 				E71501FE285A1C2500AA7558 /* ContentView.swift */,
-				E77148F4289CF40100D9957F /* OneInputExampleView.swift */,
-				E7215A6328A694E100963299 /* TwoInputsExampleView.swift */,
-				E71D19F728A806AF004C610C /* NameAndValueExampleView.swift */,
+				E71D19FA28A809EE004C610C /* DecimalInputExampleView.swift */,
+				E71D19F928A809EE004C610C /* ConnectedInputsExampleView.swift */,
+				E71D19F728A806AF004C610C /* TextAndDecimalExampleView.swift */,
 				E77148FA289D1F8600D9957F /* Helper */,
 				E7150200285A1C2600AA7558 /* Assets.xcassets */,
 				E7150202285A1C2600AA7558 /* Preview Content */,
@@ -114,13 +112,12 @@
 		E77148FA289D1F8600D9957F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				E7215A6528A6A27F00963299 /* Decimal+extension.swift */,
 				E71D19F528A8065C004C610C /* HeaderView.swift */,
-				E7215A6928A6AD5C00963299 /* View+endEditing.swift */,
 				E7215A6728A6A6CF00963299 /* InputField.swift */,
+				E77148F8289CF4DF00D9957F /* DisplayValueView.swift */,
 				E77148FB289D1FCF00D9957F /* SetValueView.swift */,
 				E7215A6B28A6ADEE00963299 /* HideKeyboardButton.swift */,
-				E77148F8289CF4DF00D9957F /* DisplayValueView.swift */,
+				E7215A6528A6A27F00963299 /* Decimal+extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -200,17 +197,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71D19FB28A809EE004C610C /* ConnectedInputsExampleView.swift in Sources */,
 				E7215A6C28A6ADEE00963299 /* HideKeyboardButton.swift in Sources */,
+				E71D19FC28A809EE004C610C /* DecimalInputExampleView.swift in Sources */,
 				E71501FF285A1C2500AA7558 /* ContentView.swift in Sources */,
-				E7215A6A28A6AD5C00963299 /* View+endEditing.swift in Sources */,
 				E7215A6628A6A27F00963299 /* Decimal+extension.swift in Sources */,
-				E7215A6428A694E100963299 /* TwoInputsExampleView.swift in Sources */,
 				E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */,
 				E71501FD285A1C2400AA7558 /* ExampleApp.swift in Sources */,
 				E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */,
-				E71D19F828A806AF004C610C /* NameAndValueExampleView.swift in Sources */,
+				E71D19F828A806AF004C610C /* TextAndDecimalExampleView.swift in Sources */,
 				E7215A6828A6A6CF00963299 /* InputField.swift in Sources */,
-				E77148F5289CF40100D9957F /* OneInputExampleView.swift in Sources */,
 				E71D19F628A8065C004C610C /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

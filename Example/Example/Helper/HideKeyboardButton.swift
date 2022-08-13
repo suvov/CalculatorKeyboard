@@ -10,8 +10,8 @@ import SwiftUI
 struct HideKeyboardButton: View {
     let action: () -> Void
 
-    init(_ action: (() -> Void)? = nil) {
-        self.action = action ?? { Self.endEditing() }
+    init(_ action: @escaping () -> Void) {
+        self.action = action
     }
 
     var body: some View {
