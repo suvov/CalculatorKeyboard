@@ -1,20 +1,16 @@
-//
-//  CalculatorTextFieldView.swift
-//  Example
-//
-//  Created by Vladimir Shutyuk on 05.08.22.
-//
-
 import SwiftUI
 import Combine
-import CalculatorKeyboard
 
-struct CalculatorTextFieldView: UIViewRepresentable {
+public struct CalculatorTextFieldView: UIViewRepresentable {
 
     @Binding
-    var decimalValue: Decimal?
+    private var decimalValue: Decimal?
 
-    func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextField {
+    public init(decimalValue: Binding<Decimal?>) {
+        _decimalValue = decimalValue
+    }
+
+    public func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextField {
         let textField = CalculatorTextField()
         textField.onDecimalValueChange = { [unowned coordinator = context.coordinator] in
             coordinator.setDecimalValue($0)
@@ -27,29 +23,23 @@ struct CalculatorTextFieldView: UIViewRepresentable {
         return textField
     }
 
-    func updateUIView(_ uiView: UITextField, context: Context) {
+    public func updateUIView(_ uiView: UITextField, context: Context) {
         (uiView as? CalculatorTextField)?.setDecimalValue(decimalValue)
     }
 
-    func makeCoordinator() -> Self.Coordinator {
+    public func makeCoordinator() -> Self.Coordinator {
         Coordinator(self)
     }
 
-    class Coordinator {
-
-        func setDecimalValue(_ value: Decimal?) {
-            parent.decimalValue = value
-        }
-
-        private var parent: CalculatorTextFieldView
+    public class Coordinator {
+        private let parent: CalculatorTextFieldView
 
         init(_ parent: CalculatorTextFieldView) {
             self.parent = parent
-            print("👶🏼 \(type(of: self)) born")
         }
 
-        deinit {
-            print("💀 \(type(of: self)) dead")
+        func setDecimalValue(_ value: Decimal?) {
+            parent.decimalValue = value
         }
     }
 }

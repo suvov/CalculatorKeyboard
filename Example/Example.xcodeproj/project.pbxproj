@@ -17,7 +17,6 @@
 		E7215A6A28A6AD5C00963299 /* View+endEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6928A6AD5C00963299 /* View+endEditing.swift */; };
 		E7215A6C28A6ADEE00963299 /* HideKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6B28A6ADEE00963299 /* HideKeyboardButton.swift */; };
 		E77148F5289CF40100D9957F /* OneInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F4289CF40100D9957F /* OneInputExampleView.swift */; };
-		E77148F7289CF40400D9957F /* CalculatorTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */; };
 		E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F8289CF4DF00D9957F /* DisplayValueView.swift */; };
 		E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148FB289D1FCF00D9957F /* SetValueView.swift */; };
 		E781930028A7A7EA009ABC9B /* AddRemoveInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78192FF28A7A7EA009ABC9B /* AddRemoveInputExampleView.swift */; };
@@ -37,7 +36,6 @@
 		E7215A6928A6AD5C00963299 /* View+endEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+endEditing.swift"; sourceTree = "<group>"; };
 		E7215A6B28A6ADEE00963299 /* HideKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardButton.swift; sourceTree = "<group>"; };
 		E77148F4289CF40100D9957F /* OneInputExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneInputExampleView.swift; sourceTree = "<group>"; };
-		E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTextFieldView.swift; sourceTree = "<group>"; };
 		E77148F8289CF4DF00D9957F /* DisplayValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayValueView.swift; sourceTree = "<group>"; };
 		E77148FB289D1FCF00D9957F /* SetValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetValueView.swift; sourceTree = "<group>"; };
 		E78192FF28A7A7EA009ABC9B /* AddRemoveInputExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRemoveInputExampleView.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 				E77148F4289CF40100D9957F /* OneInputExampleView.swift */,
 				E7215A6328A694E100963299 /* TwoInputsExampleView.swift */,
 				E78192FF28A7A7EA009ABC9B /* AddRemoveInputExampleView.swift */,
-				E77148F6289CF40400D9957F /* CalculatorTextFieldView.swift */,
 				E77148FA289D1F8600D9957F /* Helper */,
 				E7150200285A1C2600AA7558 /* Assets.xcassets */,
 				E7150202285A1C2600AA7558 /* Preview Content */,
@@ -210,7 +207,6 @@
 				E71501FD285A1C2400AA7558 /* ExampleApp.swift in Sources */,
 				E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */,
 				E7215A6828A6A6CF00963299 /* InputField.swift in Sources */,
-				E77148F7289CF40400D9957F /* CalculatorTextFieldView.swift in Sources */,
 				E77148F5289CF40100D9957F /* OneInputExampleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

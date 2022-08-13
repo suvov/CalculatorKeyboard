@@ -2,12 +2,6 @@ import UIKit
 import Combine
 
 public class CalculatorTextField: UITextField {
-    public var onDecimalValueChange: ((Decimal?) -> Void)?
-
-    public func setDecimalValue(_ value: Decimal?) {
-        decimalValueInputSubject.send(value)
-    }
-
     private lazy var transformer: Transformer = {
         let validator = Validator()
         let evaluator = Evaluator()
@@ -19,9 +13,14 @@ public class CalculatorTextField: UITextField {
     private var subcriptions = Set<AnyCancellable>()
     private let decimalValueInputSubject = PassthroughSubject<Decimal?, Never>()
 
+    public var onDecimalValueChange: ((Decimal?) -> Void)?
+
+    public func setDecimalValue(_ value: Decimal?) {
+        decimalValueInputSubject.send(value)
+    }
+
     public init() {
         super.init(frame: .zero)
-        print("👶🏼 \(type(of: self)) born")
         let keyboard = Keyboard()
         inputView = keyboard
         let input = Transformer.Input(
@@ -48,12 +47,9 @@ public class CalculatorTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // disable paste in
     public override func canPerformAction(_ action: Selector,
                                           withSender sender: Any?) -> Bool {
         false
-    }
-
-    deinit {
-        print("💀 \(type(of: self)) dead")
     }
 }
