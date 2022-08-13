@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 extension View {
-    func endEditing() {
+    static func endEditing() {
         UIApplication.shared.windows.forEach { $0.endEditing(false) }
     }
 }

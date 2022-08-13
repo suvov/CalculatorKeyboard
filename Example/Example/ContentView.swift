@@ -12,15 +12,15 @@ struct ContentView: View {
         TabView {
             OneInputExampleView()
                 .tabItem {
-                    Label("One field", systemImage: "textformat.superscript")
+                    Label("One field", systemImage: "textformat.123")
                 }
             TwoInputsExampleView()
                 .tabItem {
                     Label("Two fields", systemImage: "arrow.2.squarepath")
                 }
-            AddRemoveInputExampleView()
+            NameAndValueExampleView()
                 .tabItem {
-                    Label("Remove field", systemImage: "pause")
+                    Label("Name value", systemImage: "textformat.superscript")
                 }
         }
     }
