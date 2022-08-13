@@ -31,8 +31,8 @@ private extension TwoInputsExampleView {
         private let usdGbpRate: Decimal
 
         init() {
-            gbpUsdRate = 1.2
-            usdGbpRate = 1 / gbpUsdRate
+            usdGbpRate = 1.2
+            gbpUsdRate = 1 / usdGbpRate
         }
 
         @Published
