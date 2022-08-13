@@ -45,6 +45,11 @@ struct CalculatorTextFieldView: UIViewRepresentable {
 
         init(_ parent: CalculatorTextFieldView) {
             self.parent = parent
+            print("👶🏼 \(type(of: self)) born")
+        }
+
+        deinit {
+            print("💀 \(type(of: self)) dead")
         }
     }
 }

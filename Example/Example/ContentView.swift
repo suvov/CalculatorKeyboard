@@ -18,6 +18,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Two fields", systemImage: "arrow.2.squarepath")
                 }
+            AddRemoveInputExampleView()
+                .tabItem {
+                    Label("Remove field", systemImage: "pause")
+                }
         }
     }
 }

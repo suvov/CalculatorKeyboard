@@ -21,6 +21,7 @@ public class CalculatorTextField: UITextField {
 
     public init() {
         super.init(frame: .zero)
+        print("👶🏼 \(type(of: self)) born")
         let keyboard = Keyboard()
         inputView = keyboard
         let input = Transformer.Input(
@@ -50,5 +51,9 @@ public class CalculatorTextField: UITextField {
     public override func canPerformAction(_ action: Selector,
                                           withSender sender: Any?) -> Bool {
         false
+    }
+
+    deinit {
+        print("💀 \(type(of: self)) dead")
     }
 }
