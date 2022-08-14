@@ -6,13 +6,16 @@ public struct CalculatorTextFieldView: UIViewRepresentable {
     @Binding
     private var decimalValue: Decimal?
     private let textFieldConfig: UITextFieldConfig
+    private let onFirstResponderChange: (Bool) -> Void
 
     public init(
         decimalValue: Binding<Decimal?>,
-        textFieldConfig: UITextFieldConfig = UITextFieldConfig()
+        textFieldConfig: UITextFieldConfig = UITextFieldConfig(),
+        onFirstResponderChange: @escaping (Bool) -> Void = { _ in }
     ) {
         _decimalValue = decimalValue
         self.textFieldConfig = textFieldConfig
+        self.onFirstResponderChange = onFirstResponderChange
     }
 
     public func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextField {
@@ -20,6 +23,7 @@ public struct CalculatorTextFieldView: UIViewRepresentable {
         textField.onDecimalValueChange = { [unowned coordinator = context.coordinator] in
             coordinator.setDecimalValue($0)
         }
+        textField.delegate = context.coordinator
         textField.font = textFieldConfig.font
         textField.adjustsFontSizeToFitWidth = textFieldConfig.adjustsFontSizeToFitWidth
         textField.textAlignment = textFieldConfig.textAlignment
@@ -36,7 +40,7 @@ public struct CalculatorTextFieldView: UIViewRepresentable {
         Coordinator(self)
     }
 
-    public class Coordinator {
+    public class Coordinator: NSObject, UITextFieldDelegate {
         private let parent: CalculatorTextFieldView
 
         init(_ parent: CalculatorTextFieldView) {
@@ -45,6 +49,15 @@ public struct CalculatorTextFieldView: UIViewRepresentable {
 
         func setDecimalValue(_ value: Decimal?) {
             parent.decimalValue = value
+        }
+
+        // MARK: UITextFieldDelegate
+        public func textFieldDidBeginEditing(_ textField: UITextField) {
+            parent.onFirstResponderChange(true)
+        }
+
+        public func textFieldDidEndEditing(_ textField: UITextField) {
+            parent.onFirstResponderChange(false)
         }
     }
 }
