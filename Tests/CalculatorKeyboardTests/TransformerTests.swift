@@ -10,7 +10,8 @@ class TransformerTests: XCTestCase {
     private let transformer = Transformer(
         reducer: Reducer(validator: Validator(),
                          evaluator: Evaluator()),
-        formatter: Formatter(validator: Validator())
+        formatter: Formatter(validator: Validator()),
+        setDecimalThrottle: 0.1
     )
 
     override func setUp() {
@@ -190,9 +191,11 @@ private extension TransformerTests {
         for input in keyboardInputs {
             calculatorSubject.send(input)
         }
-        decimalSubject.send(decimal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            decimalSubject.send(decimal)
+        }
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 0.5)
         XCTAssertEqual(received, expected)
     }
 }

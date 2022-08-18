@@ -16,10 +16,14 @@ extension Transformer {
 final class Transformer {
     private let reducer: Reducer
     private let formatter: Formatter
+    private let setDecimalDebounce: TimeInterval
 
-    init(reducer: Reducer, formatter: Formatter) {
+    init(reducer: Reducer,
+         formatter: Formatter,
+         setDecimalDebounce: TimeInterval = 0.5) {
         self.reducer = reducer
         self.formatter = formatter
+        self.setDecimalDebounce = setDecimalDebounce
     }
 
     func transform(input: Input) -> Output {
@@ -35,8 +39,8 @@ final class Transformer {
             .eraseToAnyPublisher()
         
         let expressionFromDecimalValueInput = input.decimalValue
-            .compactMap { value -> Expression? in
-                if Self.enoughTimePassedSince(lastCalculatorInputTime) {
+            .compactMap { [unowned self] value -> Expression? in
+                if self.enoughTimePassedSince(lastCalculatorInputTime) {
                     return Expression.makeWithValue(value)
                 } else {
                     return nil
@@ -63,14 +67,15 @@ final class Transformer {
 }
 
 private extension Transformer {
-    static func enoughTimePassedSince(_ lastCalculatorInputTime: TimeInterval?) -> Bool {
+    func enoughTimePassedSince(_ lastCalculatorInputTime: TimeInterval?) -> Bool {
         guard let lastCalculatorInputTime = lastCalculatorInputTime else {
             return true
         }
-        /* if it was less than half second since last calculator input,
+        /* if it was less than provided decimal debounce since last calculator input,
          we assume that decimal input happens as a result of
          calculator input.
          */
-        return (ProcessInfo.processInfo.systemUptime - lastCalculatorInputTime) > 0.5
+        let timeElapsed = ProcessInfo.processInfo.systemUptime - lastCalculatorInputTime
+        return timeElapsed > setDecimalDebounce
     }
 }
