@@ -3,6 +3,8 @@
 Text field with calculator keyboard that could be used in SwiftUI and UIKit.
 Please check out example app.
 
+<img src="https://github.com/suvov/suvov.github.io/blob/master/resources/calc_keyb_example.gif" width="300" height="649"/>
+
 ## Requirements
 
 * iOS 13.0+
