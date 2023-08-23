@@ -20,6 +20,7 @@
 		E7215A6C28A6ADEE00963299 /* HideKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7215A6B28A6ADEE00963299 /* HideKeyboardButton.swift */; };
 		E77148F9289CF4DF00D9957F /* DisplayValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148F8289CF4DF00D9957F /* DisplayValueView.swift */; };
 		E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77148FB289D1FCF00D9957F /* SetValueView.swift */; };
+		E7E1BD2A2A964381000AF66B /* InputWithoutCalculatorExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E1BD292A964381000AF66B /* InputWithoutCalculatorExampleView.swift */; };
 		E7F5CA682862DAC500BF256E /* CalculatorKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = E7F5CA672862DAC500BF256E /* CalculatorKeyboard */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		E7215A6B28A6ADEE00963299 /* HideKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardButton.swift; sourceTree = "<group>"; };
 		E77148F8289CF4DF00D9957F /* DisplayValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayValueView.swift; sourceTree = "<group>"; };
 		E77148FB289D1FCF00D9957F /* SetValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetValueView.swift; sourceTree = "<group>"; };
+		E7E1BD292A964381000AF66B /* InputWithoutCalculatorExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithoutCalculatorExampleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				E71D19FA28A809EE004C610C /* DecimalInputExampleView.swift */,
 				E71D19F928A809EE004C610C /* ConnectedInputsExampleView.swift */,
 				E71D19F728A806AF004C610C /* TextAndDecimalExampleView.swift */,
+				E7E1BD292A964381000AF66B /* InputWithoutCalculatorExampleView.swift */,
 				E77148FA289D1F8600D9957F /* Helper */,
 				E7150200285A1C2600AA7558 /* Assets.xcassets */,
 				E7150202285A1C2600AA7558 /* Preview Content */,
@@ -200,6 +203,7 @@
 				E71D19FB28A809EE004C610C /* ConnectedInputsExampleView.swift in Sources */,
 				E7215A6C28A6ADEE00963299 /* HideKeyboardButton.swift in Sources */,
 				E71D19FC28A809EE004C610C /* DecimalInputExampleView.swift in Sources */,
+				E7E1BD2A2A964381000AF66B /* InputWithoutCalculatorExampleView.swift in Sources */,
 				E71501FF285A1C2500AA7558 /* ContentView.swift in Sources */,
 				E7215A6628A6A27F00963299 /* Decimal+extension.swift in Sources */,
 				E77148FC289D1FCF00D9957F /* SetValueView.swift in Sources */,

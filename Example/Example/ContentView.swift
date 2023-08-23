@@ -22,6 +22,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Text and decimal", systemImage: "textformat.superscript")
                 }
+            InputWithoutCalculatorExampleView()
+                .tabItem {
+                    Label("No calculator", systemImage: "textformat.123")
+                }
         }
     }
 }

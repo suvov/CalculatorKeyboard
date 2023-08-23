@@ -4,21 +4,24 @@ public struct CalculatorTextFieldView: UIViewRepresentable {
 
     @Binding
     private var decimalValue: Decimal?
+    private let showsCalculator: Bool
     private let textFieldConfig: UITextFieldConfig
     private let onFirstResponderChange: (Bool) -> Void
 
     public init(
         decimalValue: Binding<Decimal?>,
+        showsCalculator: Bool = true,
         textFieldConfig: UITextFieldConfig = UITextFieldConfig(),
         onFirstResponderChange: @escaping (Bool) -> Void = { _ in }
     ) {
         _decimalValue = decimalValue
+        self.showsCalculator = showsCalculator
         self.textFieldConfig = textFieldConfig
         self.onFirstResponderChange = onFirstResponderChange
     }
 
     public func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextField {
-        let textField = CalculatorTextField()
+        let textField = CalculatorTextField(showsCalculator: showsCalculator)
         textField.onDecimalValueChange = { [unowned coordinator = context.coordinator] in
             coordinator.setDecimalValue($0)
         }
