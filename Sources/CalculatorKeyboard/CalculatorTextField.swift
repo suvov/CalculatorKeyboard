@@ -19,9 +19,9 @@ public class CalculatorTextField: UITextField {
         decimalValueInputSubject.send(value)
     }
 
-    public init() {
+    public init(showsCalculator: Bool = true) {
         super.init(frame: .zero)
-        let keyboard = Keyboard()
+        let keyboard = Keyboard(showsCalculator: showsCalculator)
         inputView = keyboard
         let input = Transformer.Input(
             calculator: keyboard.output,

@@ -11,7 +11,8 @@ final class Keyboard: UIView {
     private let buttonFactory: ButtonFactory
     private let calculatorPanel = UIView()
     private let outputSubject = PassthroughSubject<CalculatorInput, Never>()
-    
+    private let showsCalculator: Bool
+
     private lazy var calculatorButtons: [UIButton] = {
         var buttons = [UIButton]()
         buttons.append(buttonFactory.makeDivision())
@@ -70,8 +71,10 @@ final class Keyboard: UIView {
         return buttons
     }()
 
-    init(buttonFactory: ButtonFactory = ButtonFactory()) {
+  init(buttonFactory: ButtonFactory = ButtonFactory(),
+       showsCalculator: Bool = true) {
         self.buttonFactory = buttonFactory
+        self.showsCalculator = showsCalculator
         super.init(frame: .zero)
         configure()
     }
@@ -103,20 +106,24 @@ private extension Keyboard {
         keypadButtons.forEach {
             addSubview($0)
         }
-        addSubview(calculatorPanel)
-        calculatorButtons.forEach {
+        if showsCalculator {
+          addSubview(calculatorPanel)
+          calculatorButtons.forEach {
             calculatorPanel.addSubview($0)
+          updateCalculatorPanelColor()
         }
-        updateCalculatorPanelColor()
+      }
     }
     
     func updateCalculatorPanelColor() {
+        guard showsCalculator else { return }
         calculatorPanel.backgroundColor = (
             traitCollection.verticalSizeClass == .compact
         ) ? .clear : .systemGray6
     }
     
     func layoutCalculator() -> CGFloat {
+        guard showsCalculator else { return .zero }
         var calculatorSize = CGSize(width: bounds.width, height: calculatorPanelHeight)
         calculatorSize.width -= safeAreaInsets.left
         calculatorSize.width -= safeAreaInsets.right
@@ -225,7 +232,7 @@ extension Keyboard {
 
 private extension Keyboard {
     var calculatorPanelHeight: CGFloat {
-        44
+        showsCalculator ? 44 : 0
     }
 
     var keyboardHeight: CGFloat {
